@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="saflute_web">
+	<include path="saflute_core.dicon"/>
+	<include path="saflute_db.dicon"/>
+	<include path="convention.dicon"/>
+
+	<!-- servlet -->
+	<component name="requestManager" class="org.dbflute.saflute.web.servlet.request.SimpleRequestManager">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="responseManager" class="org.dbflute.saflute.web.servlet.request.SimpleResponseManager">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="sessionManager" class="org.dbflute.saflute.web.servlet.session.SimpleSessionManager">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="cookieCipher" class="org.dbflute.saflute.web.servlet.cookie.SimpleCookieCipher">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="cookieManager" class="org.dbflute.saflute.web.servlet.cookie.SimpleCookieManager">
+		<initMethod name="initialize"/>
+	</component>
+
+	<!-- action -->
+	<component name="actionResolver" class="org.dbflute.saflute.web.action.ActionResolver">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="apiManager" class="org.dbflute.saflute.web.action.api.SimpleApiManager">
+		<initMethod name="initialize"/>
+	</component>
+</components>

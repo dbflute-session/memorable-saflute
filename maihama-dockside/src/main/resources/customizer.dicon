@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<include path="default-customizer.dicon"/>
+
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<!-- _/ ActionForm _/ -->
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<component name="formCustomizer" class="org.dbflute.saflute.core.interceptor.ConcreteDrivenCustomizerChain"/>
+
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<!-- _/   Action   _/ -->
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<component name="actionCustomizer" class="org.dbflute.saflute.web.action.interceptor.ActionCustomizerChain">
+		<!-- = = = = = = = -->
+		<!-- Basic Aspect  -->
+		<!-- = = = = = = = -->
+	  	<initMethod name="addAspectCustomizer">
+			<!-- you can throw exception with message in action -->
+			<arg>"aop.actionMessagesThrowsInterceptor"</arg>
+	  	</initMethod>
+	  	<initMethod name="addCustomizer">
+			<arg>
+			  	<!-- @Execute methods (or methods with transaction annotation) have transaction -->
+				<component class="org.dbflute.saflute.web.action.interceptor.ActionTxAttributeCustomizer"/>
+			</arg>
+	  	</initMethod>
+	  	<initMethod name="addCustomizer">
+			<arg>
+			  	<!-- XxxAction classes under action package can be treated as Action -->
+				<component class="org.dbflute.saflute.web.action.interceptor.RomanticActionCustomizer"/>
+			</arg>
+	  	</initMethod>
+
+		<!-- = = = = = = = = = = -->
+		<!-- Application Aspect	 -->
+		<!-- = = = = = = = = = = -->
+		<!-- define for your original aspect here -->
+	</component>
+
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<!-- _/   Assist   _/ -->
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<component name="assistCustomizer" class="org.dbflute.saflute.core.interceptor.ConcreteDrivenCustomizerChain">
+	</component>
+
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<!-- _/   Service  _/ -->
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<component name="serviceCustomizer" class="org.dbflute.saflute.core.interceptor.ConcreteDrivenCustomizerChain">
+	  	<initMethod name="addCustomizer">
+			<arg>
+				<component class="org.dbflute.saflute.db.jta.interceptor.ExplicitTxAttributeCustomizer"/>
+			</arg>
+	  	</initMethod>
+	</component>
+
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<!-- _/    Logic   _/ -->
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<component name="logicCustomizer" class="org.dbflute.saflute.core.interceptor.ConcreteDrivenCustomizerChain">
+		<initMethod name="addCustomizer">
+			<arg>
+				<component class="org.dbflute.saflute.db.jta.interceptor.ExplicitTxAttributeCustomizer"/>
+			</arg>
+		</initMethod>
+	</component>
+
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<!-- _/   Helper   _/ -->
+	<!-- _/_/_/_/_/_/_/_/ -->
+	<component name="helperCustomizer" class="org.dbflute.saflute.core.interceptor.ConcreteDrivenCustomizerChain">
+	</component>
+</components>

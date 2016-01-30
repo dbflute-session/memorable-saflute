@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="dbflute">
+    <include path="j2ee.dicon"/>
+
+    <!-- The components of DBFlute Runtime. -->
+    <component name="introduction" class="org.dbflute.maihama.dbflute.allcommon.DBFluteInitializer"/>
+    <component name="invokerAssistant" class="org.dbflute.maihama.dbflute.allcommon.ImplementedInvokerAssistant"/>
+    <component name="commonColumnAutoSetupper" class="org.dbflute.maihama.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
+    <component name="behaviorSelector" class="org.dbflute.maihama.dbflute.allcommon.ImplementedBehaviorSelector"/>
+    <component name="behaviorCommandInvoker" class="org.dbflute.bhv.core.BehaviorCommandInvoker"/>
+
+    <!-- The components of Behavior. -->
+    <component name="memberBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberBhv"/>
+    <component name="memberAddressBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberAddressBhv"/>
+    <component name="memberFollowingBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberFollowingBhv"/>
+    <component name="memberLoginBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberLoginBhv"/>
+    <component name="memberSecurityBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberSecurityBhv"/>
+    <component name="memberServiceBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberServiceBhv"/>
+    <component name="memberStatusBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberStatusBhv"/>
+    <component name="memberWithdrawalBhv" class="org.dbflute.maihama.dbflute.exbhv.MemberWithdrawalBhv"/>
+    <component name="productBhv" class="org.dbflute.maihama.dbflute.exbhv.ProductBhv"/>
+    <component name="productCategoryBhv" class="org.dbflute.maihama.dbflute.exbhv.ProductCategoryBhv"/>
+    <component name="productStatusBhv" class="org.dbflute.maihama.dbflute.exbhv.ProductStatusBhv"/>
+    <component name="purchaseBhv" class="org.dbflute.maihama.dbflute.exbhv.PurchaseBhv"/>
+    <component name="purchasePaymentBhv" class="org.dbflute.maihama.dbflute.exbhv.PurchasePaymentBhv"/>
+    <component name="regionBhv" class="org.dbflute.maihama.dbflute.exbhv.RegionBhv"/>
+    <component name="serviceRankBhv" class="org.dbflute.maihama.dbflute.exbhv.ServiceRankBhv"/>
+    <component name="withdrawalReasonBhv" class="org.dbflute.maihama.dbflute.exbhv.WithdrawalReasonBhv"/>
+</components>

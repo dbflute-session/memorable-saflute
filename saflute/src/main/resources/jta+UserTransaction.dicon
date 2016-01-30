@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<!--
+	 including dicon gives you the unnatural error in cool deploy
+	 (action's container have this dicon's container only in cool deploy)
+	 so it gets dependencies in the extension class
+	 by directly getting component from singleton container
+	 *see the blog for the details:
+	   http://d.hatena.ne.jp/jflute/20130129/1359432974
+	 -->
+	<!-- <include path="saflute_core.dicon"/> -->
+
+	<component name="UserTransaction" class="org.dbflute.saflute.db.jta.HookedUserTransaction"/>
+</components>

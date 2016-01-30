@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="saflute_core">
+	<include path="saflute_assist.dicon"/>
+
+	<!-- solo singer -->
+	<component name="primaryCipher" class="org.dbflute.saflute.core.security.SimplePrimaryCipher">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="timeManager" class="org.dbflute.saflute.core.time.SimpleTimeManager">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="jsonManager" class="org.dbflute.saflute.core.json.SimpleJsonManager">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="messageManager" class="org.dbflute.saflute.core.message.SimpleMessageManager">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="messageResourceHolder" class="org.dbflute.saflute.core.message.MessageResourceHolder">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="exceptionTranslator" class="org.dbflute.saflute.core.exception.ExceptionTranslator">
+		<initMethod name="initialize"/>
+	</component>
+	<component name="asyncManager" class="org.dbflute.saflute.core.magic.async.SimpleAsyncManager">
+		<initMethod name="initialize"/>
+	</component>
+</components>

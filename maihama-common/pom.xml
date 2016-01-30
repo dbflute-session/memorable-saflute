@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.dbflute.maihama</groupId>
+		<artifactId>maihama-base</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../maihama-base/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>maihama-common</artifactId>
+	<packaging>jar</packaging>
+
+	<name>Common Project in Maihama</name>
+	<description>The example COMMON project for SAFlute and DBFlute</description>
+	<url>http://dbflute.org</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<organization>
+		<name>The DBFlute Project</name>
+		<url>http://dbflute.org/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>jflute</id>
+			<timezone>+9</timezone>
+		</developer>
+	</developers>
+
+	<profiles>
+		<!-- "allpackage" means resources for all package (both integration and production) -->
+		<profile>
+			<id>integration</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/integration/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/allpackage/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>production</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/production/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/allpackage/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--                                                                Main Framework -->
+		<!--                                                                 = = = = = = = -->
+		<!-- saflute -->
+		<dependency>
+			<groupId>org.dbflute.saflute</groupId>
+			<artifactId>saflute</artifactId>
+		</dependency>
+
+		<!-- dbflute -->
+		<dependency>
+			<groupId>org.dbflute</groupId>
+			<artifactId>dbflute-runtime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- seasar -->
+		<!--
+		 needs s2-extension for latest version of s2-framework
+		 or s2-classbuilder's seasar version might be valid
+		 (s2-tiger sets s2-framework as test scope)
+		 -->
+		<dependency>
+			<groupId>org.seasar.container</groupId>
+            <artifactId>s2-extension</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.seasar.container</groupId>
+			<artifactId>s2-tiger</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.seasar.cms.s2-classbuilder</groupId>
+		    <artifactId>s2-classbuilder</artifactId>
+		</dependency>
+
+		<!-- sastruts -->
+		<dependency>
+			<groupId>org.seasar.sastruts</groupId>
+			<artifactId>sa-struts</artifactId>
+		</dependency>
+
+		<!-- j2ee -->
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jta_1.1_spec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-ejb_3.0_spec</artifactId>
+		</dependency>
+
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--                                                               Partner Library -->
+		<!--                                                               = = = = = = = = -->
+		<!-- jsonic (json parser) -->
+		<dependency>
+			<groupId>net.arnx</groupId>
+			<artifactId>jsonic</artifactId>
+		</dependency>
+		<!-- mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+		<!-- velocity (template engine) -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--                                                               Various Utility -->
+		<!--                                                               = = = = = = = = -->
+		<!-- commons -->
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>commons-collections</groupId>
+		  <artifactId>commons-collections</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency> <!-- used for cipher -->
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency> <!-- needs secure version JVN#14876762 -->
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+	</dependencies>
+</project>

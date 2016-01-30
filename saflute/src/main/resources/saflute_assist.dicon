@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="saflute_assist">
+	<!--
+	 you should add a saflute_assist++.dicon in your domain application.
+	 e.g.
+	<component name="assistantDirector" class="com.example.dbflute.sastruts.sea.domainfw.direction.MythicaFwAssistantDirector"/>
+	<component name="mythicaConfig" class="com.example.dbflute.sastruts.sea.domainfw.direction.MythicaConfig$SimpleImpl">
+		<initMethod name="initialize"/>
+	</component>
+	-->
+
+	<!-- simple name here to be accessible in dicon files that include this -->
+	<component name="provider" class="org.dbflute.saflute.core.direction.UnifiedProvider"/>
+</components>

@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.dbflute.maihama</groupId>
+		<artifactId>maihama-base</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../maihama-base/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>maihama-dockside</artifactId>
+	<packaging>war</packaging>
+
+	<name>Dockside Application in Maihama</name>
+	<description>The example WEB project for SAFlute and DBFlute</description>
+	<url>http://dbflute.org</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<organization>
+		<name>The DBFlute Project</name>
+		<url>http://dbflute.org/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>jflute</id>
+			<timezone>+9</timezone>
+		</developer>
+	</developers>
+
+	<build>
+		<defaultGoal>war</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- "allpackage" means resources for all package (both integration and production) -->
+		<profile>
+			<id>integration</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/integration/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/allpackage/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>production</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/production/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/allpackage/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--                                                                Main Framework -->
+		<!--                                                                 = = = = = = = -->
+		<!-- application -->
+		<dependency>
+			<groupId>org.dbflute.maihama</groupId>
+			<artifactId>maihama-common</artifactId>
+			<version>${app.version}</version>
+		</dependency>
+
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--                                                                       Testing -->
+		<!--                                                                       = = = = -->
+		<!-- jetty -->
+		<dependency>
+			<groupId>org.dbflute.jetty</groupId>
+			<artifactId>jetty-boot</artifactId>
+			<version>0.3.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId> <!-- jetty-all does not contain JSP -->
+			<artifactId>jetty-jsp</artifactId>
+			<version>9.2.10.v20150310</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion> <!-- jstl already exists -->
+					<groupId>org.eclipse.jetty.orbit</groupId>
+					<artifactId>javax.servlet.jsp.jstl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.glassfish.web</groupId>
+					<artifactId>javax.servlet.jsp.jstl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+</project>

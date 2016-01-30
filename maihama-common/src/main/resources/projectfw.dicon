@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="projectfw">
+	<include path="saflute.dicon"/>
+
+	<!--
+	 /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+	 dicon for projectfw components
+	 o Framework components that are not under smart deploy, e.g. used by AssistantDirector
+	 o You can add components in your domain (application) by projectfw++.dicon
+	 o You should NOT make environment dicons and switch them by environment
+	 = = = = = = = = = =/
+	 -->
+</components>

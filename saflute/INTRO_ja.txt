@@ -1,0 +1,228 @@
+
+# ========================================================================================
+#                                                                                  Welcome
+#                                                                                  =======
+SAFluteは、SAStrutsをタイプセーフ拡張したフレームワークです。
+
+# ----------------------------------------------------------
+#                                  Action, JSP Name Identity
+#                                  -------------------------
+いわゆる IndexAction だらけ問題に対応しています。
+(ListActionだらけ、AddActionだらけ)
+
+ぱっと見たいActionクラスがあっても、ctrl + shift + R (リソースの検索) をしたときに、
+大量の IndexAction や ListAction の前に立ち尽くしてしまう問題です。
+通常のSAStrutsにおけるクラス名とURLのマッピングルールは以下の通りです。
+
+  member.ListAction -> /member/list/
+  login.IndexAction -> /login/
+  member.purchase.ListAction -> /member/purchase/list/
+
+できれば、MemberListAction でも /member/list/ にマッピングしたいと。
+そうすればクラス名による検索がしやすくなります。
+ただそのままでは /member/memberList/ というURLになってしまいます。
+SAFluteでは、パッケージ名をクラス名のプレフィックスとして付与して識別性を高められます。
+
+  member.ListAction -> /member/list/
+  member.MemberListAction -> /member/list/
+  member.purchase.MemberPurchaseListAction -> /member/purchase/list/
+
+これは、JSPでも同じような拡張がされています。
+s:form や s:link でaction属性ややhref属性を省略した場合のマッピング先は以下の通りです。
+
+  member.MemberListAction <- /view/member/member_list.jsp
+  login.LoginIndexAction <- /view/login/login_index.jsp (or login.jsp)
+  member.purchase.MemberPurchaseListAction <- /view/member/purchase/member_purchase_list.jsp
+
+ctrl + shift + R フレンドリーな名前になることで、
+簡単にActionクラスやJSPファイルを見つけることができます。
+
+# ----------------------------------------------------------
+#                                     Action Return TypeSafe
+#                                     ----------------------
+Actionクラスの@Executeのメソッドの戻り値をタイプセーフに実装できます。
+通常のSAStrutsにおける return の実装は以下の通りです。
+
+  // JSPファイル名を指定してフォワード
+  return "list.jsp";
+
+  // URL (Actionクラス) を指定してリダイレクト
+  return "/edit/" + listForm.memberId + "/?redirect=true";
+
+これが、SAFluteでは以下のように実装できます。
+
+  // "pa" で補完すればJSPの候補が出てくるので選ぶだけ
+  return path_Member_MemberListJsp;
+
+  // "redi" で補完して redirect メソッドにClassクラスでアクション指定
+  return redirectById(MemberEditAction.class, listForm.memberId);
+
+JSPの path_Xxx の定義は、DBFlute の FreeGen で自動生成されます。
+JSPファイルを作成したら(作り途中でもOK)、manage.bat(sh)を叩いて 12 番を選びます。
+すると、Actionクラスの return 部分で pa で ctrl + space で補完すれば選択できます。
+
+redirectXxx()メソッドは、Actionのスーパークラスに用意されています。
+redirectById()だけでなく、GETパラメーターを追加できるメソッドなど色々用意されています。
+XxxActon.class で指定できるので、リンク切れはありませんし、
+ctrl + クリック (F3) で遷移先のActionのプログラムをすぐに見ることができます。
+
+タイプセーフにすることで打ち間違えなく実装できるのと同時に、
+画面構造の変更などが発生したときに影響範囲を検知しやすくなります。
+また、ctrl + クリック (F3) や ctrl + shift + G (呼び出し側の検索)
+と組み合わせることで、処理の追跡がしやすくなります。
+
+# ----------------------------------------------------------
+#                                         Assistant Director
+#                                         ------------------
+フレームワークのdiconファイルをコピー拡張したくないものです。
+フレームワークの構造変更がもろにアプリに影響してしまうので、
+フレームワークからすれば、構造変更がしづらくなり、
+アプリからすれば、フレームワークの進化を追従しづらくなります。
+
+SAFluteでは、フレームワーク自体の拡張やコンフィグの設定を、
+一つのインターフェースからできるようになっています。
+要は、ある程度アプリ側の拡張を予測して、あらかじめ拡張ポイントを提供しています。
+ということで、diconファイルのコピーは最終手段ということになります。
+(ただ、そのときも S2ClassBuilder でピンポイントのオーバーライドが良いでしょう)
+
+拡張や設定が一箇所に集まるため、アプリの挙動を把握しやすいというメリットがあります。
+また、プログラム上で指定できるということで、単なるコンフィグでは表現できない
+プログラム処理の入った拡張を容易に指定できるというメリットもあります。
+
+とはいえ、単なるコンフィグっぽいものや環境依存のものに関しては、
+外だしのファイルで管理したいものです。そういうものに関しては、
+次の "Friendly .properties" が利用できます。
+
+# ----------------------------------------------------------
+#                                       Friendly .properties
+#                                       --------------------
+diconファイルを開発用・本番用と冗長化させるのは極力したくないものです。
+開発用・本番用と冗長化させると、コンポーネントの構造変更による修正が大変になるだけでなく、
+本番でしか動作確認できない本番用のdiconファイルに手を入れる機会が増えます。
+
+※diconファイル (DI設定ファイル) は、設定ファイルというよりも、
+コンポーネントの生成や依存関係を記したプログラムとも言えるかと。
+
+フレームワークや共通部品の拡張は、できれば違う方法でやりたいものです。
+開発用・本番用のコンフィグの切り替えは、コンポーネント定義とは無関係の
+.properties ファイルのようなシンプルなものでやりたいものです。
+
+だがしかし、.properties ファイルはJavaの歴史において古いクラスであり、
+あまり使い勝手の良いものとは言えないものです。
+とはいえ、長い期間をかけて現場に浸透してきたものでもあります。
+その .properties を徹底して使いやすくしました。
+
+A. .properties対応のインターフェースを自動生成し、タイプセーフにget
+
+ @Resource
+ protected Web1Config web1Config;
+ ...
+
+ public void foo() {
+     Integer expire = web1Config.getCookieDefaultExpireAsInteger();
+     ...
+ }
+
+B. .propertiesで継承をできるように (@Overrideでオーバーライドも可能)
+
+ common_config.properties
+   |-web1_config.properties
+   |-web2_config.properties
+
+C. .propertiesの内容を環境ごとに比較できるドキュメントを自動生成
+
+// PropertiesHTML
+http://dbflute.seasar.org/ja/manual/function/generator/task/doc/propertieshtml.html
+
+これらの機能を活用することで、「あの」.propertiesであっても、
+フレンドリーになれるんじゃなかと思います。
+
+# ----------------------------------------------------------
+#                                           Coin Improvement
+#                                           ----------------
+その他、細かく改善がされています。
+
+o Action の doValidate() で(暗黙の)トランザクションが発行されないようにしている
+o Action や Logic でインターフェースを実装しても、コンクリートクラスのメソッドにAOPが掛けられる
+o などなど
+
+
+# ========================================================================================
+#                                                                                  Library
+#                                                                                  =======
+SAFluteが提供する主なライブラリの概要を紹介します。
+詳しくは、そのクラス(or インターフェース)のJavaDocやメソッドを参照してください。
+
+# ----------------------------------------------------------
+#                                         Assistant Director
+#                                         ------------------
+[SessionManager] *DI
+HTTPセッションを司るManagerで、よく使いそうなメソッドが用意されている。
+基本的にセッションを使うときはこれを経由する。
+
+[RequestManager] *DI
+HTTPリクエストを司るManagerで、よく使いそうなメソッドが用意されている。
+SAStrutsのルーティング前のURLを取得することもできる。
+基本的にリクエストを使うときはこれを経由する。
+
+[ResponseManager] *DI
+HTTPレスポンスを司るManagerで、よく使いそうなメソッドが用意されている。
+基本的にリクエストを使うときはこれを経由する。
+
+[CookieManager] *DI
+クッキーを司るManagerで、よく使いそうなメソッドが用意されている。
+暗号化を組み込んだメソッドもある。
+基本的にリクエストを使うときはこれを経由する。
+
+[PrimaryCipher] *DI
+ログインパスワードをDBに格納するときなど、主要な目的で利用する暗号化コンポーネント。
+何を主要なものとするかはアプリの自由ではありますが、
+例えば、クッキーで利用する暗号化は、別の Cipher が用意されています。
+(ただし CookieCipher は、既にCookieManager内で利用されてるので直接利用は少ない)
+
+[TimeManager] *DI
+現在日時の取得に加え、ビジネスロジックが必要となる営業日の計算などが利用できるコンポーネント。
+アプリ内では、Java標準の現在日時取得ロジックを利用せず、このクラスから取得すること。
+
+[HandyDate]
+一日足したり、時分秒を切り取ったりの日付の操作は、HandyDateが利用できる。
+addDay() や moveToDayJust() (その日のジャストに行く、つまり時分秒切り取り)
+などの便利メソッドが利用できる。
+
+# ----------------------------------------------------------
+#                                                Tag Library
+#                                                -----------
+幾つかのタグリブをデフォルトで拡張しています。
+足りない場合は、アプリでさらに独自に拡張すると良いでしょう。
+
+＜SAStrutsのタグリブ＞ ※こちらはSAFluteにおいて必須
+s:form     // Actionとのマッピング自動計算(action属性の省略)
+s:link     // Actionとのマッピング切れチェック
+s:submit   // 正直いまのところ何も
+
+＜Strutsのタグリブ＞
+html:errors   // styleClass追加、一時セッションメッセージの削除 ※微妙に必須
+html:text     // placeholderが使える
+html:password // placeholderが使える
+html:textarea // placeholderが使える
+
+※これらを定義した tldファイルを web.xml で定義することで利用できるようになります。
+
+<jsp-config>
+	<taglib>
+		<taglib-uri>http://dbflute.seasar.org/saflute-htmltag</taglib-uri>
+		<taglib-location>/META-INF/saflute-htmltag.tld</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>http://dbflute.seasar.org/saflute-stag</taglib-uri>
+		<taglib-location>/META-INF/saflute-stag.tld</taglib-location>
+	</taglib>
+	<jsp-property-group>
+		<url-pattern>*.jsp</url-pattern>
+		<el-ignored>false</el-ignored>
+		<page-encoding>UTF-8</page-encoding>
+		<scripting-invalid>false</scripting-invalid>
+		<include-prelude>/WEB-INF/view/common/common.jsp</include-prelude>
+	</jsp-property-group>
+</jsp-config>
+
