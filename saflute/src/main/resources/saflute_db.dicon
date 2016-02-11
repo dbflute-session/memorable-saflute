@@ -3,5 +3,4 @@
 	"http://www.seasar.org/dtd/components24.dtd">
 <components namespace="saflute_db">
 	<include path="saflute_core.dicon"/>
-	<include path="dbflute.dicon"/>
 </components>
