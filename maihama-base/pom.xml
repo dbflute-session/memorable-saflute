@@ -208,19 +208,6 @@
 						<groupId>org.dbflute</groupId>
 						<artifactId>dbflute-runtime</artifactId>
 					</exclusion>
-					<!--
-					 not to be influenced by s2chronos dirty environment
-					 for example, s2chronos-core has log4j.properties in the jar file
-					 so you should check it when you make with-dependencies-jar file
-					 -->
-					<exclusion>
-						<groupId>org.seasar.chronos</groupId>
-						<artifactId>s2chronos-core</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.seasar.chronos</groupId>
-						<artifactId>s2chronos-extension</artifactId>
-					</exclusion>
 				</exclusions>
 			</dependency>
 
@@ -313,32 +300,6 @@
 				<groupId>org.apache.geronimo.specs</groupId>
 				<artifactId>geronimo-ejb_3.0_spec</artifactId>
 				<version>1.0</version>
-			</dependency>
-
-			<!-- s2chronos -->
-			<dependency>
-				<groupId>org.seasar.chronos</groupId>
-				<artifactId>s2chronos-core</artifactId>
-				<version>1.0.0</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.apache.geronimo.specs</groupId>
-						<artifactId>geronimo-servlet_2.4_spec</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>junit</groupId>
-						<artifactId>junit</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>junit-addons</groupId>
-						<artifactId>junit-addons</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>org.seasar.chronos</groupId>
-				<artifactId>s2chronos-extension</artifactId>
-				<version>1.0.0</version>
 			</dependency>
 
 			<!-- logging -->

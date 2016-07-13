@@ -22,7 +22,6 @@ import java.util.Map;
 
 import org.dbflute.helper.message.ExceptionMessageBuilder;
 import org.dbflute.saflute.web.action.processor.ActionRequestProcessor;
-import org.dbflute.saflute.web.task.interceptor.BatchTaskInterceptor;
 import org.dbflute.util.DfCollectionUtil;
 
 /**
@@ -32,8 +31,7 @@ import org.dbflute.util.DfCollectionUtil;
  * I mean, your logic should not depend on the existence of this cache. <br>
  * This cache is cleared when action execute ends (in the request processor),
  * and is cleared when task execute of s2chronos ends.
- * So you must set {@link ActionRequestProcessor} in your web.xml,
- * and set {@link BatchTaskInterceptor} to your task classes in your customizer.dicon.
+ * So you must set {@link ActionRequestProcessor} in your web.xml.
  * @author jflute
  */
 public class ThreadCacheContext {

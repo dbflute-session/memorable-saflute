@@ -34,7 +34,6 @@ import org.dbflute.saflute.db.dbflute.OptionalDBFluteDirection;
 import org.dbflute.saflute.web.action.OptionalActionDirection;
 import org.dbflute.saflute.web.servlet.OptionalServletDirection;
 import org.dbflute.saflute.web.servlet.cookie.CookieResourceProvider;
-import org.dbflute.saflute.web.task.OptionalTaskDirection;
 import org.dbflute.system.DBFluteSystem;
 import org.dbflute.system.provider.DfFinalTimeZoneProvider;
 import org.dbflute.util.DfTypeUtil;
@@ -250,13 +249,5 @@ public abstract class MaihamaFwAssistantDirector extends CachedFwAssistantDirect
 
     protected String getCookieSecurityWord() {
         return "dockside:maihama"; // hard coding for now
-    }
-
-    // -----------------------------------------------------
-    //                                                  Task
-    //                                                  ----
-    @Override
-    protected OptionalTaskDirection prepareOptionalTaskDirection() {
-        return new OptionalTaskDirection();
     }
 }

@@ -18,7 +18,6 @@ package org.dbflute.saflute.core.direction;
 import org.dbflute.saflute.db.dbflute.OptionalDBFluteDirection;
 import org.dbflute.saflute.web.action.OptionalActionDirection;
 import org.dbflute.saflute.web.servlet.OptionalServletDirection;
-import org.dbflute.saflute.web.task.OptionalTaskDirection;
 
 /**
  * @author jflute
@@ -33,7 +32,6 @@ public abstract class CachedFwAssistantDirector implements FwAssistantDirector {
     protected OptionalDBFluteDirection optionalDBFluteDirection;
     protected OptionalActionDirection optionalActionDirection;
     protected OptionalServletDirection optionalServletDirection;
-    protected OptionalTaskDirection optionalTaskDirection;
 
     // ===================================================================================
     //                                                                              Assist
@@ -153,26 +151,4 @@ public abstract class CachedFwAssistantDirector implements FwAssistantDirector {
     }
 
     protected abstract OptionalServletDirection prepareOptionalServletDirection();
-
-    // -----------------------------------------------------
-    //                                                  Task
-    //                                                  ----
-    public OptionalTaskDirection assistOptionalTaskDirection() {
-        if (optionalTaskDirection != null) {
-            return optionalTaskDirection;
-        }
-        synchronized (this) {
-            if (optionalTaskDirection != null) {
-                return optionalTaskDirection;
-            }
-            optionalTaskDirection = prepareOptionalTaskDirection();
-        }
-        if (optionalTaskDirection == null) {
-            String msg = "Not found optional task direction.";
-            throw new IllegalStateException(msg);
-        }
-        return optionalTaskDirection;
-    }
-
-    protected abstract OptionalTaskDirection prepareOptionalTaskDirection();
 }

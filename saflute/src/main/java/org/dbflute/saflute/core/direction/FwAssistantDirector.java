@@ -17,7 +17,6 @@ package org.dbflute.saflute.core.direction;
 
 import org.dbflute.saflute.web.action.OptionalActionDirection;
 import org.dbflute.saflute.web.servlet.OptionalServletDirection;
-import org.dbflute.saflute.web.task.OptionalTaskDirection;
 
 /**
  * The assistant director (AD) for SAFlute. <br>
@@ -68,9 +67,4 @@ public interface FwAssistantDirector {
     //                                               Servlet
     //                                               -------
     OptionalServletDirection assistOptionalServletDirection();
-
-    // -----------------------------------------------------
-    //                                                  Task
-    //                                                  ----
-    OptionalTaskDirection assistOptionalTaskDirection();
 }
