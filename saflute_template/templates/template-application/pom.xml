@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>$baseGroup</groupId>
+		<artifactId>$baseProject</artifactId>
+		<version>$parentVersion</version>
+		<relativePath>../$baseProject/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>$artifactId</artifactId>
+	<packaging>$packaging</packaging>
+
+	<name>${AppName} Web Application in ${ProjectName}</name>
+	<description>$!{description}</description>
+	<url>http://dbflute.org</url>
+	<inceptionYear>2014</inceptionYear>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<organization>
+		<name>The DBFlute Project</name>
+		<url>http://dbflute.org/</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>jflute</id>
+			<timezone>+9</timezone>
+		</developer>
+	</developers>
+
+	<build>
+		<finalName>${appname}</finalName>
+		<defaultGoal>war</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!-- "allpackage" means resources for all package (both integration and production) -->
+		<profile>
+			<id>integration</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/integration/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/allpackage/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<profile>
+			<id>production</id>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/production/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/allpackage/resources</directory>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--                                                                Main Framework -->
+		<!--                                                                 = = = = = = = -->
+		<!-- application -->
+		<dependency>
+			<groupId>$groupId</groupId>
+			<artifactId>${projectname}-common</artifactId>
+			<version>${app.version}</version>
+		</dependency>
+	</dependencies>
+</project>

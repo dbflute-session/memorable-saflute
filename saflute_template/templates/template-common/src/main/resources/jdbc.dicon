@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components namespace="jdbc">
+	<include path="jta.dicon"/>
+	<include path="jdbc-extension.dicon"/>
+	<include path="saflute_assist.dicon"/>
+
+	<component name="xaDataSource"
+		class="org.dbflute.saflute.db.dbcp.HookedXADataSource">
+		<property name="driverClassName">
+			"com.mysql.jdbc.Driver"
+		</property>
+		<property name="URL">
+			provider.config().getJdbcUrl()
+		</property>
+		<property name="user">provider.config().getJdbcUser()</property>
+		<property name="password">provider.config().getJdbcPassword()</property>
+	</component>
+
+	<component name="connectionPool" 
+		class="org.dbflute.saflute.db.dbcp.HookedConnectionPool">
+		<property name="timeout">600</property>
+		<property name="maxPoolSize">provider.config().getJdbcConnectionPoolingSize()</property>
+		<property name="allowLocalTx">true</property>
+		<destroyMethod name="close"/>
+	</component>
+
+	<component class="org.seasar.extension.dbcp.impl.DataSourceImpl"/>
+</components>

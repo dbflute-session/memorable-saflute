@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.4//EN"
+	"http://www.seasar.org/dtd/components24.dtd">
+<components>
+	<!-- = = = = = = = = = = -->
+	<!-- Customizer for Test -->
+	<!-- = = = = = = = = = = -->
+	<include path="default-customizer.dicon"/>
+
+	<!-- logic -->
+	<component name="logicCustomizer" class="org.dbflute.saflute.core.interceptor.ConcreteDrivenCustomizerChain">
+		<initMethod name="addCustomizer">
+			<arg>
+				<component class="org.dbflute.saflute.db.jta.interceptor.ExplicitTxAttributeCustomizer"/>
+			</arg>
+		</initMethod>
+	</component>
+</components>
