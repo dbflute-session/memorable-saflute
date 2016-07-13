@@ -16,6 +16,7 @@
 package org.dbflute.saflute.web.action;
 
 import java.lang.reflect.Method;
+import java.util.function.Supplier;
 
 import javax.annotation.Resource;
 
@@ -642,8 +643,8 @@ public abstract class TypicalBaseAction extends RootAction implements ActionCall
     }
 
     protected void showApplicationExceptionHandling(RuntimeException cause, String forwardTo) {
-        if (LOG.isInfoEnabled()) {
-            // not show forwardTo because of forwarding log later
+        showAppEx(cause, () -> {
+            /* not show forwardTo because of forwarding log later */
             final StringBuilder sb = new StringBuilder();
             sb.append("...Handling application exception:");
             sb.append("\n_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/");
@@ -655,7 +656,16 @@ public abstract class TypicalBaseAction extends RootAction implements ActionCall
             }
             buildApplicationExceptionStackTrace(cause, sb);
             sb.append("\n_/_/_/_/_/_/_/_/_/_/");
-            LOG.info(sb.toString());
+            return sb.toString();
+        });
+    }
+
+    protected void showAppEx(RuntimeException cause, Supplier<String> msgSupplier) {
+        // to trace it in production just in case
+        // several exception is depend on circumstances
+        // whether application exception or not 
+        if (LOG.isInfoEnabled()) {
+            LOG.info(msgSupplier.get());
         }
     }
 
