@@ -36,44 +36,88 @@
 	<developers>
 		<developer>
 			<id>jflute</id>
+			<name>Masahiko Kubo</name>
+			<email>dbflute@gmail.com</email>
 			<timezone>+9</timezone>
 		</developer>
 	</developers>
 
 	<issueManagement>
-		<system>JIRA</system>
-		<url>https://www.seasar.org/issues/browse/DBFLUTE</url>
+		<system>Github</system>
+		<url>https://github.com/dbflute-session/memorable-saflute/issues</url>
 	</issueManagement>
 	<mailingLists>
 		<mailingList>
-			<name>Seasar-user</name>
-			<subscribe>https://www.seasar.org/mailman/listinfo/seasar-user</subscribe>
-			<unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user</unsubscribe>
-			<post>seasar-user@ml.seasar.org</post>
-			<archive>https://www.seasar.org/mailman/listinfo/seasar-user</archive>
+			<name>DBFlute-users</name>
+			<subscribe>https://groups.google.com/forum/#!forum/dbflute</subscribe>
+			<unsubscribe>https://groups.google.com/forum/#!forum/dbflute</unsubscribe>
+			<post>dbflute@googlegroups.com</post>
+			<archive>https://groups.google.com/forum/#!forum/dbflute</archive>
 		</mailingList>
 	</mailingLists>
 
+	<scm>
+		<connection>scm:git:git@github.com:dbflute-session/memorable-saflute.git</connection>
+		<developerConnection>scm:git:git@github.com:dbflute-session/memorable-saflute.git</developerConnection>
+		<url>git@github.com:dbflute-session/memorable-saflute.git</url>
+	</scm>
+
+	<parent>
+		<!-- http://repo.maven.apache.org/maven2/org/sonatype/oss/oss-parent/9/oss-parent-9.pom -->
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>9</version>
+	</parent>
+
 	<build>
 		<defaultGoal>validate</defaultGoal>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<updateReleaseInfo>true</updateReleaseInfo>
+					</configuration>
+				</plugin>
+				<!-- to avoid warning 'maven-enforcer-plugin (goal "enforce") is ignored 
+					by m2e' -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-enforcer-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>enforce</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<configuration>
-					<updateReleaseInfo>true</updateReleaseInfo>
-				</configuration>
-			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>2.1.2</version>
@@ -94,12 +138,38 @@
 					<encoding>UTF-8</encoding>
 					<docencoding>UTF-8</docencoding>
 					<charset>UTF-8</charset>
+					<!-- you can avoid self-closing check e.g. br-tag (checked since java8) -->
+					<!-- fixed but comment-out for emergency deploy -->
+					<additionalparam>-Xdoclint:none</additionalparam>
 				</configuration>
 				<executions>
+					<execution>
+						<id>javadoc-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
 					<execution>
 						<phase>site</phase>
 						<goals>
 							<goal>javadoc</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 'xxx.jar.asc' file can be created by this plug-in you can deploy 
+				by 'mvn -e clean deploy -Dgpg.keyname=xxx -Dgpg.passphrase="xxx"' -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
 						</goals>
 					</execution>
 				</executions>
