@@ -1,0 +1,129 @@
+map:{
+    # ==========================================================================
+    #                                                                    ${ProjectName}
+    #                                                                    =======
+    ; ${ProjectName}EnvGen = map:{
+        ; resourceMap = map:{
+            ; baseDir = ../src/main
+            ; resourceType = PROP
+            ; resourceFile = $$baseDir$$/resources/${projectname}_env.properties
+        }
+        ; outputMap = map:{
+            ; templateFile = SystemConfig.vm
+            ; outputDirectory = $$baseDir$$/java
+            ; package = ${packageName}.projectfw.core.direction
+            ; className = ${ProjectName}Env
+        }
+        ; tableMap = map:{
+            ; exceptKeyList = list:{}
+            ; groupingKeyMap = map:{}
+            ; extendsPropRequest = null
+            ; superClassPackage = org.dbflute.saflute.core.direction
+            ; superClassSimpleName = ObjectiveConfig
+        }
+    }
+    ; ${ProjectName}ConfigGen = map:{
+        ; resourceMap = map:{
+            ; baseDir = ../src/main
+            ; resourceType = PROP
+            ; resourceFile = $$baseDir$$/resources/${projectname}_config.properties
+        }
+        ; outputMap = map:{
+            ; templateFile = SystemConfig.vm
+            ; outputDirectory = $$baseDir$$/java
+            ; package = ${packageName}.projectfw.core.direction
+            ; className = ${ProjectName}Config
+        }
+        ; tableMap = map:{
+            ; exceptKeyList = list:{}
+            ; groupingKeyMap = map:{}
+            ; extendsPropRequest = ${ProjectName}EnvGen
+            ; isCheckImplicitOverride = true
+            ; interfacePackage = ${packageName}.projectfw.core.direction
+            ; interfaceSimpleName = ${ProjectName}Env
+            ; superClassPackage = ${packageName}.projectfw.core.direction
+            ; superClassSimpleName = ${ProjectName}Env.SimpleImpl
+        }
+    }
+    ; ${ProjectName}MessageGen = map:{
+        ; resourceMap = map:{
+            ; baseDir = ../src/main
+            ; resourceType = PROP
+            ; resourceFile = $$baseDir$$/resources/${projectname}_message_ja.properties
+        }
+        ; outputMap = map:{
+            ; templateFile = UserMessages.vm
+            ; outputDirectory = $$baseDir$$/java
+            ; package = ${packageName}.projectfw.web.action
+            ; className = ${ProjectName}Messages
+        }
+        ; tableMap = map:{
+            ; groupingKeyMap = map:{ label = prefix:labels. }
+        }
+    }
+
+    # ==========================================================================
+    #                                                                   ${AppName}
+    #                                                                   ========
+    ; ${AppName}ConfigGen = map:{
+        ; resourceMap = map:{
+            ; baseDir = ../../${projectname}-${appname}/src/main
+            ; resourceType = PROP
+            ; resourceFile = $$baseDir$$/resources/${appname}_config.properties
+        }
+        ; outputMap = map:{
+            ; templateFile = SystemConfig.vm	
+            ; outputDirectory = $$baseDir$$/java
+            ; package = ${packageName}.domainfw.direction
+            ; className = ${AppName}Config
+        }
+        ; tableMap = map:{
+            ; exceptKeyList = list:{}
+            ; groupingKeyMap = map:{}
+            ; extendsPropRequest = ${ProjectName}ConfigGen
+            ; isCheckImplicitOverride = true
+            ; interfacePackage = ${packageName}.projectfw.core.direction
+            ; interfaceSimpleName = ${ProjectName}Config
+            ; superClassPackage = ${packageName}.projectfw.core.direction
+            ; superClassSimpleName = ${ProjectName}Config.SimpleImpl
+        }
+    }
+    ; ${AppName}MessageGen = map:{
+        ; resourceMap = map:{
+            ; baseDir = ../../${projectname}-${appname}/src/main
+            ; resourceType = PROP
+            ; resourceFile = $$baseDir$$/resources/${appname}_message_ja.properties
+        }
+        ; outputMap = map:{
+            ; templateFile = UserMessages.vm
+            ; outputDirectory = $$baseDir$$/java
+            ; package = ${packageName}.domainfw.action
+            ; className = ${AppName}Messages
+        }
+        ; tableMap = map:{
+            ; extendsPropRequest = ${ProjectName}MessageGen
+            ; isCheckImplicitOverride = true
+            ; groupingKeyMap = map:{ label = prefix:labels. }
+            ; superClassPackage = ${packageName}.projectfw.web.action
+            ; superClassSimpleName = ${ProjectName}Messages
+        }
+    }
+    ; ${AppName}JspPathGen = map:{
+        ; resourceMap = map:{
+            ; baseDir = ../../${projectname}-${appname}/src/main
+            ; resourceType = FILE_PATH
+        }
+        ; outputMap = map:{
+            ; templateFile = JspPath.vm
+            ; outputDirectory = $$baseDir$$/java
+            ; package = ${packageName}.domainfw.action
+            ; className = ${AppName}JspPath
+        }
+        ; tableMap = map:{
+            ; targetDir = $$baseDir$$/webapp/WEB-INF/view
+            ; targetExt = .jsp
+            ; targetKeyword = 
+            ; exceptPathList = list:{ contain:/view/common/ }
+        }
+    }
+}

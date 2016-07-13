@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Sample Category"
+            id="net.sevenspirals.saflute_template">
+      </category>
+      <view
+            name="Sample View"
+            icon="icons/sample.gif"
+            category="net.sevenspirals.saflute_template"
+            class="net.sevenspirals.saflute_template.views.SampleView"
+            id="net.sevenspirals.saflute_template.views.SampleView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               ratio="0.5"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="right"
+               id="net.sevenspirals.saflute_template.views.SampleView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="net.sevenspirals.saflute_template.project"
+            name="SAFlute">
+      </category>
+      <wizard
+            category="net.sevenspirals.saflute_template.project"
+            class="net.sevenspirals.saflute_template.wizards.ProjectBaseWizard"
+            icon="icons/sample.gif"
+            id="net.sevenspirals.saflute_template.wizard.base_wizard"
+            name="SAFlute project-base"
+            project="true">
+      </wizard>
+      <wizard
+            category="net.sevenspirals.saflute_template.project"
+            class="net.sevenspirals.saflute_template.wizards.ProjectCommonWizard"
+            icon="icons/sample.gif"
+            id="net.sevenspirals.saflute_template.wizard.common_wizard"
+            name="SAFlute project-common"
+            project="true">
+      </wizard>
+      <wizard
+            category="net.sevenspirals.saflute_template.project"
+            class="net.sevenspirals.saflute_template.wizards.ProjectApplicationWizard"
+            icon="icons/sample.gif"
+            id="net.sevenspirals.saflute_template.wizard.application_wizard"
+            name="SAFlute project-application"
+            project="true">
+      </wizard>
+   </extension>
+
+</plugin>

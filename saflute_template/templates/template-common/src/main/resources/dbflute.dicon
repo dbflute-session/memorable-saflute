@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+    "http://www.seasar.org/dtd/components21.dtd">
+
+<components namespace="dbflute">
+    <include path="j2ee.dicon"/>
+
+    <!-- The components of DBFlute Runtime. -->
+    <component name="introduction" class="${packageName}.dbflute.allcommon.DBFluteInitializer"/>
+    <component name="invokerAssistant" class="${packageName}.dbflute.allcommon.ImplementedInvokerAssistant"/>
+    <component name="commonColumnAutoSetupper" class="${packageName}.dbflute.allcommon.ImplementedCommonColumnAutoSetupper"/>
+    <component name="behaviorSelector" class="${packageName}.dbflute.allcommon.ImplementedBehaviorSelector"/>
+    <component name="behaviorCommandInvoker" class="org.dbflute.bhv.core.BehaviorCommandInvoker"/>
+
+    <!-- The components of Behavior. -->
+    <component name="memberBhv" class="${packageName}.dbflute.exbhv.MemberBhv"/>
+    <component name="memberAddressBhv" class="${packageName}.dbflute.exbhv.MemberAddressBhv"/>
+    <component name="memberFollowingBhv" class="${packageName}.dbflute.exbhv.MemberFollowingBhv"/>
+    <component name="memberLoginBhv" class="${packageName}.dbflute.exbhv.MemberLoginBhv"/>
+    <component name="memberSecurityBhv" class="${packageName}.dbflute.exbhv.MemberSecurityBhv"/>
+    <component name="memberServiceBhv" class="${packageName}.dbflute.exbhv.MemberServiceBhv"/>
+    <component name="memberStatusBhv" class="${packageName}.dbflute.exbhv.MemberStatusBhv"/>
+    <component name="memberWithdrawalBhv" class="${packageName}.dbflute.exbhv.MemberWithdrawalBhv"/>
+    <component name="productBhv" class="${packageName}.dbflute.exbhv.ProductBhv"/>
+    <component name="productCategoryBhv" class="${packageName}.dbflute.exbhv.ProductCategoryBhv"/>
+    <component name="productStatusBhv" class="${packageName}.dbflute.exbhv.ProductStatusBhv"/>
+    <component name="purchaseBhv" class="${packageName}.dbflute.exbhv.PurchaseBhv"/>
+    <component name="regionBhv" class="${packageName}.dbflute.exbhv.RegionBhv"/>
+    <component name="serviceRankBhv" class="${packageName}.dbflute.exbhv.ServiceRankBhv"/>
+    <component name="withdrawalReasonBhv" class="${packageName}.dbflute.exbhv.WithdrawalReasonBhv"/>
+</components>

@@ -1,0 +1,6 @@
+map:{
+    ; url      = jdbc:mysql://localhost:3306/${projectname}db
+    ; schema   =
+    ; user     = ${projectname}user
+    ; password = ${projectname}word
+}
