@@ -38,7 +38,7 @@ public class LoginIndexAction extends DocksideBaseAction {
     //                                          ------------
     @ActionForm
     @Resource
-    public LoginForm loginForm;
+    protected LoginForm loginForm;
 
     // ===================================================================================
     //                                                                             Execute

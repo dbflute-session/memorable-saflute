@@ -24,6 +24,7 @@ import org.dbflute.maihama.domainfw.police.NonWebHasWebReferencePolice;
 import org.dbflute.maihama.domainfw.police.WebPackageNinjaReferencePolice;
 import org.dbflute.maihama.unit.UnitDocksideContainerTestCase;
 import org.dbflute.saflute.web.action.login.LoginManager;
+import org.dbflute.utflute.seasar.s2container.InjectedResourceDefinitionPolice;
 
 /**
  * @author jflute
@@ -60,5 +61,11 @@ public class ActionDefinitionTest extends UnitDocksideContainerTestCase {
 
     public void test_webPackageNinjaReferencePolice() throws Exception {
         policeStoryOfJavaClassChase(new WebPackageNinjaReferencePolice());
+    }
+
+    public void test_injectedResourceDefinitionPolice() throws Exception {
+        policeStoryOfJavaClassChase(new InjectedResourceDefinitionPolice().shouldBeProtectedField(field -> {
+            return true; /* means all fields */
+        }));
     }
 }
