@@ -18,7 +18,7 @@
 		<javassist.version>3.20.0-GA</javassist.version> <!-- java8 needs newer version -->
 		<classbuilder.version>0.0.11</classbuilder.version>
 		<sastruts.version>1.0.4-sp9</sastruts.version>
-		<utflute.version>0.6.0C</utflute.version>
+		<utflute.version>0.6.1B</utflute.version>
 	</properties>
 
 	<licenses>
