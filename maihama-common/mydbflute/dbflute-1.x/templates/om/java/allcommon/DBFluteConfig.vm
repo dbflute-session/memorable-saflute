@@ -1,5 +1,5 @@
 ##
-## Copyright 2014-2014 the original author or authors.
+## Copyright 2014-2017 the original author or authors.
 ##
 ## Licensed under the Apache License, Version 2.0 (the "License");
 ## you may not use this file except in compliance with the License.
@@ -93,8 +93,10 @@ public class ${glDBFluteConfig} {
     protected boolean _emptyStringParameterAllowed = ${database.isEmptyStringParameterAllowed()};
     protected boolean _overridingQueryAllowed = ${database.isOverridingQueryAllowed()};
     protected boolean _nonSpecifiedColumnAccessAllowed = ${database.isNonSpecifiedColumnAccessAllowed()};
+    protected boolean _specifyColumnRequired = ${database.isSpecifyColumnRequired()};
     protected boolean _columnNullObjectAllowed = ${database.isColumnNullObjectAllowed()};
     protected boolean _columnNullObjectGearedToSpecify = ${database.isColumnNullObjectGearedToSpecify()};
+    protected boolean _datetimePrecisionTruncationOfCondition = ${database.isDatetimePrecisionTruncationOfCondition()};
     protected boolean _disableSelectIndex;
     protected boolean _queryUpdateCountPreCheck = ${database.isQueryUpdateCountPreCheck()};
 
@@ -347,6 +349,21 @@ public class ${glDBFluteConfig} {
     }
 
     // ===================================================================================
+    //                                                              SpecifyColumn Required
+    //                                                              ======================
+    public boolean isSpecifyColumnRequired() {
+        return _specifyColumnRequired;
+    }
+
+    public void setSpecifyColumnRequired(boolean specifyColumnRequired) {
+        assertUnlocked();
+        if (_log.isInfoEnabled()) {
+            _log.info("...Setting specifyColumnRequired: " + specifyColumnRequired);
+        }
+        _specifyColumnRequired = specifyColumnRequired;
+    }
+
+    // ===================================================================================
     //                                                                  Column Null Object
     //                                                                  ==================
     public boolean isColumnNullObjectAllowed() {
@@ -381,6 +398,26 @@ public class ${glDBFluteConfig} {
             _log.info("...Setting columnNullObjectGearedToSpecify: " + columnNullObjectGearedToSpecify);
         }
         _columnNullObjectGearedToSpecify = columnNullObjectGearedToSpecify;
+    }
+
+    // ===================================================================================
+    //                                                                 Date-time Precision
+    //                                                                 ===================
+    public boolean isDatetimePrecisionTruncationOfCondition() {
+        return _datetimePrecisionTruncationOfCondition;
+    }
+
+    /**
+     * Set whether it truncates date-time precision of condition value or not. <br>
+     * This configuration is only for ConditionBean.
+     * @param datetimePrecisionTruncationOfCondition The determination, true or false.
+     */
+    public void setDatetimePrecisionTruncationOfCondition(boolean datetimePrecisionTruncationOfCondition) {
+        assertUnlocked();
+        if (_log.isInfoEnabled()) {
+            _log.info("...Setting datetimePrecisionTruncationOfCondition: " + datetimePrecisionTruncationOfCondition);
+        }
+        _datetimePrecisionTruncationOfCondition = datetimePrecisionTruncationOfCondition;
     }
 
     // ===================================================================================

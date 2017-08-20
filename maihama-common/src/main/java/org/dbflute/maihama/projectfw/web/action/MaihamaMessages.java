@@ -481,12 +481,12 @@ public class MaihamaMessages extends ActionMessages {
      * message: 上限が{1}バイトなのに実際は{0}バイトだったのでアップロードできませんでした。
      * </pre>
      * @param property The property name for the message. (NotNull)
-     * @param arg1 The parameter 1 for message. (NotNull)
      * @param arg0 The parameter 0 for message. (NotNull)
+     * @param arg1 The parameter 1 for message. (NotNull)
      */
-    public void addErrorsUploadSize(String property, String arg1, String arg0) {
+    public void addErrorsUploadSize(String property, String arg0, String arg1) {
         assertPropertyNotNull(property);
-        add(property, new ActionMessage(ERRORS_UPLOAD_SIZE, arg1, arg0));
+        add(property, new ActionMessage(ERRORS_UPLOAD_SIZE, arg0, arg1));
     }
 
     /**
