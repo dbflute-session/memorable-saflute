@@ -18,18 +18,26 @@ package org.dbflute.saflute.core.remoteapi.receiver;
 import java.lang.reflect.ParameterizedType;
 
 import org.dbflute.remoteapi.receiver.FlJsonReceiver;
-import org.dbflute.saflute.core.remoteapi.json.SaRealJsonEngine;
+import org.dbflute.saflute.core.remoteapi.json.LastalikeJsonEngineFactory;
+import org.dbflute.saflute.web.servlet.request.RequestManager;
+import org.lastaflute.core.json.JsonMappingOption;
+import org.lastaflute.core.json.engine.RealJsonEngine;
 
 /**
  * @author inoue
  * @author jflute
  */
-public class SaJsonReceiver extends FlJsonReceiver {
+public class LaJsonReceiver extends FlJsonReceiver {
 
-    protected final SaRealJsonEngine jsonEngine; // to parse JSON response and request as JsonBody
+    protected final RealJsonEngine jsonEngine; // to parse JSON response and request as JsonBody
 
-    public SaJsonReceiver(SaRealJsonEngine jsonParser) {
-        this.jsonEngine = jsonParser;
+    // actually requestManager is unneeded here, but for migration
+    public LaJsonReceiver(RequestManager requestManager, JsonMappingOption mappingOption) {
+        this.jsonEngine = createLastalikeJsonEngineFactory().create(mappingOption);
+    }
+
+    protected LastalikeJsonEngineFactory createLastalikeJsonEngineFactory() {
+        return new LastalikeJsonEngineFactory();
     }
 
     @Override
@@ -40,6 +48,6 @@ public class SaJsonReceiver extends FlJsonReceiver {
     @Override
     protected <BEAN> BEAN fromJsonParameteried(String json, ParameterizedType parameterizedType) {
         // needs to add parseJsonParameterized() to RealJsonParser
-        return jsonEngine.fromJsonParameterized(json, parameterizedType);
+        return jsonEngine.fromJsonParameteried(json, parameterizedType);
     }
 }

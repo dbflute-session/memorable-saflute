@@ -18,7 +18,8 @@
 		<javassist.version>3.20.0-GA</javassist.version> <!-- java8 needs newer version -->
 		<classbuilder.version>0.0.11</classbuilder.version>
 		<sastruts.version>1.0.4-sp9</sastruts.version>
-		<remoteapi.version>0.3.6</remoteapi.version>
+		<remoteapi.version>0.3.8</remoteapi.version> <!-- #remoteapi -->
+		<gson.version>2.8.2</gson.version> <!-- #remoteapi -->
 		<utflute.version>0.8.1</utflute.version>
 	</properties>
 
@@ -324,6 +325,11 @@
 			<groupId>net.arnx</groupId>
 			<artifactId>jsonic</artifactId>
 			<version>1.3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId> <!-- #remoteapi -->
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
 		</dependency>
 
 		<!-- remote api -->
