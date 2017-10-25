@@ -13,34 +13,27 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.saflute.core.remoteapi.sender.body;
+package org.dbflute.saflute.core.remoteapi.sender.query;
 
+import org.dbflute.remoteapi.mapping.FlParameterSerializer;
 import org.dbflute.remoteapi.mapping.FlRemoteMappingPolicy;
-import org.dbflute.remoteapi.sender.body.FlFormSender;
+import org.dbflute.remoteapi.sender.query.FlQuerySender;
+import org.dbflute.saflute.core.remoteapi.mapping.LaParameterSerializer;
 
 /**
- * @author awane
  * @author jflute
  */
-public class SaFormSender extends FlFormSender {
+public class LaQuerySender extends FlQuerySender {
 
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public SaFormSender(FlRemoteMappingPolicy mappingPolicy) {
+    public LaQuerySender(FlRemoteMappingPolicy mappingPolicy) {
         super(mappingPolicy);
     }
 
-    // ===================================================================================
-    //                                                                  Parameter Handling
-    //                                                                  ==================
-    // unsupported SerializedName in SAFlute
-    //@Override
-    //protected String asSerializedParameterName(DfPropertyDesc propertyDesc) {
-    //    final SerializedName serializedName = propertyDesc.getField().getAnnotation(SerializedName.class);
-    //    if (serializedName != null) {
-    //        return serializedName.value();
-    //    }
-    //    return super.asSerializedParameterName(propertyDesc);
-    //}
+    @Override
+    protected FlParameterSerializer createParameterSerializer() {
+        return new LaParameterSerializer(); // for e.g. field naming
+    }
 }

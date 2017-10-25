@@ -16,17 +16,25 @@
 package org.dbflute.saflute.core.remoteapi.sender.body;
 
 import org.dbflute.remoteapi.sender.body.FlJsonSender;
-import org.dbflute.saflute.core.remoteapi.json.SaRealJsonEngine;
+import org.dbflute.saflute.core.remoteapi.json.LastalikeJsonEngineFactory;
+import org.dbflute.saflute.web.servlet.request.RequestManager;
+import org.lastaflute.core.json.JsonMappingOption;
+import org.lastaflute.core.json.engine.RealJsonEngine;
 
 /**
  * @author jflute
  */
-public class SaJsonSender extends FlJsonSender {
+public class LaJsonSender extends FlJsonSender {
 
-    protected final SaRealJsonEngine jsonEngine; // to parse JSON response and request as JsonBody
+    protected final RealJsonEngine jsonEngine; // to parse JSON response and request as JsonBody
 
-    public SaJsonSender(SaRealJsonEngine jsonManager) {
-        this.jsonEngine = jsonManager;
+    // actually requestManager is unneeded here, but for migration
+    public LaJsonSender(RequestManager requestManager, JsonMappingOption mappingOption) {
+        this.jsonEngine = createLastalikeJsonEngineFactory().create(mappingOption);
+    }
+
+    protected LastalikeJsonEngineFactory createLastalikeJsonEngineFactory() {
+        return new LastalikeJsonEngineFactory();
     }
 
     @Override

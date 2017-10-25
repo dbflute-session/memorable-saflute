@@ -17,13 +17,15 @@ package org.dbflute.saflute.core.remoteapi.json;
 
 import java.lang.reflect.ParameterizedType;
 
+import org.lastaflute.core.json.engine.RealJsonEngine;
+
 import net.arnx.jsonic.JSON;
 
 // #thinking jflute should I use Gson? And use LastaFlute extension?
 /**
  * @author jflute
  */
-public class SaJSonicJsonEngine implements SaRealJsonEngine {
+public class SaJSonicJsonEngine implements RealJsonEngine {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -60,7 +62,7 @@ public class SaJSonicJsonEngine implements SaRealJsonEngine {
     }
 
     @Override
-    public <BEAN> BEAN fromJsonParameterized(String json, ParameterizedType parameterizedType) {
+    public <BEAN> BEAN fromJsonParameteried(String json, ParameterizedType parameterizedType) {
         return JSON.decode(json, parameterizedType);
     }
 }

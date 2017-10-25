@@ -31,7 +31,7 @@ import org.dbflute.util.Srl;
 /**
  * @author jflute
  */
-public class Sato {
+public class Sato { // #later rename to Lato, after LastaFlute dependency removed
 
     // ===================================================================================
     //                                                                          toString()
