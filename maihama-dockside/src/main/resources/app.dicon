@@ -7,4 +7,5 @@
 	<include path="saflute.dicon"/>
 	<include path="projectfw.dicon"/>
 	<include path="dbflute.dicon"/>
+	<include path="remote_api.dicon"/> <!-- #remoteapi -->
 </components>
