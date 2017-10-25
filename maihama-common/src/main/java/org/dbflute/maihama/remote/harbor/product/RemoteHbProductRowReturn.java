@@ -16,7 +16,7 @@
 package org.dbflute.maihama.remote.harbor.product;
 
 import org.lastaflute.core.util.Lato;
-import org.lastaflute.web.validation.Required;
+import org.seasar.struts.annotation.Required;
 
 /**
  * @author s.tadokoro
