@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.saflute.core.util;
+package org.lastaflute.core.util;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,17 +21,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-import org.dbflute.helper.beans.DfBeanDesc;
-import org.dbflute.helper.beans.DfPropertyDesc;
-import org.dbflute.helper.beans.factory.DfBeanDescFactory;
 import org.dbflute.jdbc.Classification;
 import org.dbflute.util.DfTypeUtil;
 import org.dbflute.util.Srl;
+import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.beans.factory.BeanDescFactory;
 
 /**
  * @author jflute
  */
-public class Sato { // #later rename to Lato, after LastaFlute dependency removed
+public abstract class Lato {
 
     // ===================================================================================
     //                                                                          toString()
@@ -80,19 +80,18 @@ public class Sato { // #later rename to Lato, after LastaFlute dependency remove
             throw new IllegalArgumentException("The argument 'obj' should not be null.");
         }
         final Class<? extends Object> targetType = obj.getClass();
-        final DfBeanDesc beanDesc = DfBeanDescFactory.getBeanDesc(targetType);
-        List<String> proppertyNameList = beanDesc.getProppertyNameList();
+        final BeanDesc beanDesc = BeanDescFactory.getBeanDesc(targetType);
+        final int propertySize = beanDesc.getPropertyDescSize();
         final StringBuilder sb = new StringBuilder();
         sb.append("{");
-        int index = 0;
-        for (String propertyName : proppertyNameList) {
-            final DfPropertyDesc pd = beanDesc.getPropertyDesc(propertyName);
+        for (int i = 0; i < propertySize; i++) {
+            final PropertyDesc pd = beanDesc.getPropertyDesc(i);
+            final String propertyName = pd.getPropertyName();
             final Object propertyValue = pd.getValue(obj);
             final String exp = deriveExpression(propertyValue, alreadyAppearedSet, () -> {
                 return resolveObjectString(propertyValue, alreadyAppearedSet);
             });
-            sb.append(index > 0 ? ", " : "").append(propertyName).append("=").append(exp);
-            ++index;
+            sb.append(i > 0 ? ", " : "").append(propertyName).append("=").append(exp);
         }
         sb.append("}");
         return sb.toString();

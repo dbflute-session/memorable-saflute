@@ -19,8 +19,8 @@ import java.util.function.Consumer;
 
 import org.dbflute.remoteapi.FlutyRemoteApi;
 import org.dbflute.remoteapi.FlutyRemoteApiRule;
-import org.dbflute.saflute.core.util.Sato;
 import org.dbflute.saflute.web.servlet.request.RequestManager;
+import org.lastaflute.core.util.Lato;
 
 /**
  * @author jflute
@@ -56,6 +56,6 @@ public class SaflutyRemoteApi extends FlutyRemoteApi {
     //                                                                      ==============
     @Override
     protected String convertBeanToDebugString(Object bean) {
-        return Sato.string(bean); // because its toString() may not be overridden
+        return Lato.string(bean); // because its toString() may not be overridden
     }
 }
