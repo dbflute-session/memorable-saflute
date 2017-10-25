@@ -24,7 +24,6 @@ import org.lastaflute.core.json.JsonMappingOption;
 import org.lastaflute.core.json.engine.RealJsonEngine;
 
 /**
- * @author inoue
  * @author jflute
  */
 public class LaJsonReceiver extends FlJsonReceiver {
