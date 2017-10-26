@@ -326,11 +326,6 @@
 			<artifactId>jsonic</artifactId>
 			<version>1.3.7</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.code.gson</groupId> <!-- #remoteapi -->
-			<artifactId>gson</artifactId>
-			<version>${gson.version}</version>
-		</dependency>
 
 		<!-- remote api -->
 		<dependency>
@@ -345,6 +340,11 @@
 			<version>${remoteapi.version}</version>
 		</dependency>
 		 -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId> <!-- for JsonSender, JsonReceiver -->
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
 
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 		<!--                                                               Various Utility -->

@@ -13,7 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.saflute.core.remoteapi.json;
+package org.dbflute.saflute.core.remoteapi.supplement;
 
 import org.dbflute.saflute.core.direction.AccessibleConfig;
 import org.dbflute.saflute.core.util.ContainerUtil;
