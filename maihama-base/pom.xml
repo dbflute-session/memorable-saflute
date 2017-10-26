@@ -358,11 +358,6 @@
 				<artifactId>jsonic</artifactId>
 				<version>${jsonic.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>com.google.code.gson</groupId> <!-- #remoteapi -->
-				<artifactId>gson</artifactId>
-				<version>${gson.version}</version>
-			</dependency>
 			<!-- java mail (mail engine) -->
 			<dependency>
 				<groupId>javax.mail</groupId>
