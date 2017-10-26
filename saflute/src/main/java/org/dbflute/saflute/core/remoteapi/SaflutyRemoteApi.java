@@ -15,17 +15,33 @@
  */
 package org.dbflute.saflute.core.remoteapi;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
+import java.util.Arrays;
 import java.util.function.Consumer;
 
+import org.dbflute.helper.message.ExceptionMessageBuilder;
+import org.dbflute.optional.OptionalThing;
 import org.dbflute.remoteapi.FlutyRemoteApi;
 import org.dbflute.remoteapi.FlutyRemoteApiRule;
+import org.dbflute.remoteapi.exception.RemoteApiRequestValidationErrorException;
+import org.dbflute.remoteapi.exception.RemoteApiResponseValidationErrorException;
+import org.dbflute.saflute.core.remoteapi.supplement.Valid;
 import org.dbflute.saflute.web.servlet.request.RequestManager;
 import org.lastaflute.core.util.Lato;
+import org.seasar.framework.beans.BeanDesc;
+import org.seasar.framework.beans.PropertyDesc;
+import org.seasar.framework.beans.factory.BeanDescFactory;
+import org.seasar.struts.annotation.Required;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author jflute
  */
 public class SaflutyRemoteApi extends FlutyRemoteApi {
+
+    private static final Logger logger = LoggerFactory.getLogger(SaflutyRemoteApi.class);
 
     // ===================================================================================
     //                                                                           Attribute
@@ -41,6 +57,88 @@ public class SaflutyRemoteApi extends FlutyRemoteApi {
 
     public void acceptRequestManager(RequestManager requestManager) {
         this.requestManager = requestManager;
+    }
+
+    // ===================================================================================
+    //                                                                          Validation
+    //                                                                          ==========
+    @Override
+    protected void validateParam(Type returnType, String urlBase, String actionPath, Object[] pathVariables, Object param,
+            FlutyRemoteApiRule rule) {
+        final StringBuilder pathSb = new StringBuilder();
+        try {
+            doValidate(param, pathSb);
+        } catch (RemoteApiSimpleValidationErrorException e) {
+            final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
+            br.addNotice("Validation Error as Param object for the remote API.");
+            final String url = urlBase + actionPath + "/" + Arrays.asList(pathVariables);
+            setupRequestInfo(br, returnType, url, param);
+            setupYourRule(br, rule);
+            final String msg = br.buildExceptionMessage();
+            if (rule.getValidatorOption().isHandleAsWarnParam()) {
+                logger.warn(msg, e);
+            } else {
+                throw new RemoteApiRequestValidationErrorException(msg, e);
+            }
+        }
+    }
+
+    @Override
+    protected void validateReturn(Type returnType, String url, OptionalThing<Object> param, int httpStatus, OptionalThing<String> body,
+            Object ret, FlutyRemoteApiRule rule) {
+        final StringBuilder pathSb = new StringBuilder();
+        try {
+            doValidate(ret, pathSb);
+        } catch (RemoteApiSimpleValidationErrorException e) {
+            final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
+            br.addNotice("Validation Error as Return object for the remote API.");
+            setupRequestInfo(br, returnType, url, param);
+            setupResponseInfo(br, httpStatus, body);
+            setupReturnInfo(br, ret);
+            setupYourRule(br, rule);
+            final String msg = br.buildExceptionMessage();
+            if (rule.getValidatorOption().isHandleAsWarnReturn()) {
+                logger.warn(msg, e);
+            } else {
+                throw new RemoteApiResponseValidationErrorException(msg, e);
+            }
+        }
+    }
+
+    protected void doValidate(Object bean, StringBuilder pathSb) {
+        final BeanDesc beanDesc = BeanDescFactory.getBeanDesc(bean.getClass());
+        final int propertyDescSize = beanDesc.getPropertyDescSize();
+        for (int i = 0; i < propertyDescSize; i++) {
+            final PropertyDesc propertyDesc = beanDesc.getPropertyDesc(i);
+            final Field field = propertyDesc.getField();
+            if (field == null) {
+                continue; // field property only supported
+            }
+            final Required requiredAnno = field.getAnnotation(Required.class);
+            if (requiredAnno != null) {
+                final Object value = propertyDesc.getValue(bean);
+                if (value == null || (value instanceof String && ((String) value).trim().isEmpty())) {
+                    String msg = "The field is required but no value: value=[" + value + "], field=" + pathSb;
+                    throw new RemoteApiSimpleValidationErrorException(msg);
+                }
+            }
+            final Valid validAnno = field.getAnnotation(Valid.class);
+            if (validAnno != null) {
+                final Object nestedInstance = propertyDesc.getValue(bean);
+                if (nestedInstance != null) {
+                    doValidate(nestedInstance, pathSb);
+                }
+            }
+        }
+    }
+
+    public static class RemoteApiSimpleValidationErrorException extends RuntimeException {
+
+        private static final long serialVersionUID = 1L;
+
+        public RemoteApiSimpleValidationErrorException(String msg) {
+            super(msg);
+        }
     }
 
     // ===================================================================================

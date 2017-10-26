@@ -18,7 +18,7 @@ package org.dbflute.saflute.core.remoteapi.receiver;
 import java.lang.reflect.ParameterizedType;
 
 import org.dbflute.remoteapi.receiver.FlJsonReceiver;
-import org.dbflute.saflute.core.remoteapi.json.LastalikeJsonEngineFactory;
+import org.dbflute.saflute.core.remoteapi.supplement.LastalikeJsonEngineFactory;
 import org.dbflute.saflute.web.servlet.request.RequestManager;
 import org.lastaflute.core.json.JsonMappingOption;
 import org.lastaflute.core.json.engine.RealJsonEngine;
