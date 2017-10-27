@@ -21,11 +21,10 @@ import org.lastaflute.core.json.engine.RealJsonEngine;
 
 import net.arnx.jsonic.JSON;
 
-// #thinking jflute should I use Gson? And use LastaFlute extension?
 /**
  * @author jflute
  */
-public class SaJSonicJsonEngine implements RealJsonEngine {
+public class SaJSonicJsonEngine implements RealJsonEngine { // unused, memory?
 
     // ===================================================================================
     //                                                                           Attribute

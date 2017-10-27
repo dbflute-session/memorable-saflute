@@ -17,13 +17,12 @@ package org.dbflute.maihama.remote.harbor.base;
 
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import org.dbflute.Entity;
 import org.dbflute.cbean.result.PagingResultBean;
+import org.dbflute.saflute.core.remoteapi.supplement.NotNull;
+import org.dbflute.saflute.core.remoteapi.supplement.Valid;
 import org.lastaflute.core.util.Lato;
-import org.lastaflute.web.validation.Required;
+import org.seasar.struts.annotation.Required;
 
 /**
  * @param <BEAN> The type of row bean

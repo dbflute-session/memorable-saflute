@@ -9,25 +9,15 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.maihama.app.web.wx.rmharbor;
-
-import org.dbflute.maihama.dbflute.allcommon.CDef;
-import org.seasar.struts.annotation.Required;
+package org.dbflute.remoteapi.mapping;
 
 /**
  * @author jflute
+ * @since 0.3.7 (2017/10/06 Friday)
  */
-public class WxRmharborProductSearchForm {
-
-    // only required here, length and others are validated by remote API
-    @Required
-    public String productName;
-
-    public CDef.ProductStatus productStatus;
-
-    public String purchaseMemberName;
+public class FlVacantMappingPolicy implements FlRemoteMappingPolicy { // state-less
 }

@@ -6,6 +6,7 @@ import org.dbflute.maihama.remote.harbor.base.RemoteHbPagingReturn;
 import org.dbflute.maihama.remote.harbor.product.RemoteHbProductRowReturn;
 import org.dbflute.maihama.remote.harbor.product.RemoteHbProductSearchParam;
 import org.dbflute.maihama.unit.UnitCommonPjContainerTestCase;
+import org.dbflute.remoteapi.exception.RemoteApiHttpClientErrorException;
 import org.dbflute.remoteapi.mock.MockHttpClient;
 import org.dbflute.saflute.web.servlet.request.RequestManager;
 
@@ -41,5 +42,24 @@ public class RemoteHarborBhvTest extends UnitCommonPjContainerTestCase {
         assertEquals(20, ret.allRecordCount);
         assertEquals(5, ret.allPageCount);
         assertEquals(0, ret.rows.size());
+    }
+
+    // ===================================================================================
+    //                                                                       for Framework
+    //                                                                       =============
+    public void test_framework_validationError_basic() {
+        // ## Arrange ##
+        RemoteHbProductSearchParam param = new RemoteHbProductSearchParam();
+        String json = "{cause=VALIDATION_ERROR, errors : [{field=productName, messages=[\"sea land piari\"]}]}";
+        MockHttpClient client = MockHttpClient.create(resopnse -> {
+            resopnse.asJsonDirectly(json, request -> true).httpStatus(400);
+        });
+        registerMock(client);
+        RemoteHarborBhv bhv = new RemoteHarborBhv(requestManager);
+        inject(bhv);
+
+        // ## Act ##
+        // ## Assert ##
+        assertException(RemoteApiHttpClientErrorException.class, () -> bhv.requestProductList(param));
     }
 }

@@ -13,21 +13,21 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.maihama.app.web.wx.rmharbor;
-
-import org.dbflute.maihama.dbflute.allcommon.CDef;
-import org.seasar.struts.annotation.Required;
+package org.lastaflute.core.json.filter;
 
 /**
+ * The callback for filtering of simple text parameter. <br>
+ * (contains list elements)
  * @author jflute
+ * @since 0.7.1 (2015/12/15 Tuesday)
  */
-public class WxRmharborProductSearchForm {
+@FunctionalInterface
+public interface JsonSimpleTextReadingFilter {
 
-    // only required here, length and others are validated by remote API
-    @Required
-    public String productName;
-
-    public CDef.ProductStatus productStatus;
-
-    public String purchaseMemberName;
+    /**
+     * Filter the simple text parameter. (contains list elements) <br>
+     * @param text The text as JSON reading. (NotNull: not called if null parameter)
+     * @return The filtered parameter or plain parameter. (NullAllowed: then filtered as null value)
+     */
+    String filter(String text);
 }
