@@ -9,25 +9,21 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.maihama.app.web.wx.rmharbor;
-
-import org.dbflute.maihama.dbflute.allcommon.CDef;
-import org.seasar.struts.annotation.Required;
+package org.dbflute.remoteapi.exception.translation;
 
 /**
  * @author jflute
+ * @since 0.3.3 (2017/09/21 Thursday)
  */
-public class WxRmharborProductSearchForm {
+public interface ClientErrorTranslator {
 
-    // only required here, length and others are validated by remote API
-    @Required
-    public String productName;
-
-    public CDef.ProductStatus productStatus;
-
-    public String purchaseMemberName;
+    /**
+     * @param resource The resource of translating that has thrown client error exception. (NotNull)
+     * @return The translated exception which should have thrown exception. (NullAllowed: no translation)
+     */
+    RuntimeException translate(ClientErrorTranslatingResource resource);
 }

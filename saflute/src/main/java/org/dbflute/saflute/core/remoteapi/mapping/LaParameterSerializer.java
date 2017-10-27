@@ -20,9 +20,8 @@ import java.lang.reflect.Field;
 import org.dbflute.helper.beans.DfPropertyDesc;
 import org.dbflute.remoteapi.mapping.FlParameterSerializer;
 import org.dbflute.remoteapi.mapping.FlRemoteMappingPolicy;
+import org.dbflute.saflute.core.remoteapi.mapping.LaRemoteMappingPolicy.FormFieldNaming;
 import org.dbflute.util.Srl;
-import org.lastaflute.remoteapi.mapping.LaRemoteMappingPolicy.FormFieldNaming;
-import org.lastaflute.remoteapi.mapping.LaSelectedMappingPolicy;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.annotations.SerializedName;

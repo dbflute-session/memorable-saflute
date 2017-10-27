@@ -1,7 +1,7 @@
 package org.dbflute.maihama.remote.harbor.signin;
 
 import org.lastaflute.core.util.Lato;
-import org.lastaflute.web.validation.Required;
+import org.seasar.struts.annotation.Required;
 
 /**
  * @author jflute

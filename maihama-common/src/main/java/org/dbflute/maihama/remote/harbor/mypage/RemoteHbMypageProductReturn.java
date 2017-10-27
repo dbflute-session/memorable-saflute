@@ -1,7 +1,7 @@
 package org.dbflute.maihama.remote.harbor.mypage;
 
 import org.dbflute.maihama.dbflute.exentity.Product;
-import org.lastaflute.web.validation.Required;
+import org.seasar.struts.annotation.Required;
 
 /**
  * @author jflute

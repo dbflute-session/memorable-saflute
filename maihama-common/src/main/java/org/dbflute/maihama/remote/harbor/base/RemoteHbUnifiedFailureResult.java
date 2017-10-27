@@ -17,10 +17,9 @@ package org.dbflute.maihama.remote.harbor.base;
 
 import java.util.List;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import org.lastaflute.web.validation.Required;
+import org.dbflute.saflute.core.remoteapi.supplement.NotNull;
+import org.dbflute.saflute.core.remoteapi.supplement.Valid;
+import org.seasar.struts.annotation.Required;
 
 /**
  * @author jflute

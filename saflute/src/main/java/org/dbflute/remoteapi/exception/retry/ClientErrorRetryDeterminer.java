@@ -9,25 +9,17 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.maihama.app.web.wx.rmharbor;
-
-import org.dbflute.maihama.dbflute.allcommon.CDef;
-import org.seasar.struts.annotation.Required;
+package org.dbflute.remoteapi.exception.retry;
 
 /**
  * @author jflute
+ * @since 0.3.4 (2017/09/23 Sutarday)
  */
-public class WxRmharborProductSearchForm {
+public interface ClientErrorRetryDeterminer {
 
-    // only required here, length and others are validated by remote API
-    @Required
-    public String productName;
-
-    public CDef.ProductStatus productStatus;
-
-    public String purchaseMemberName;
+    boolean ready(ClientErrorRetryResource resource);
 }
