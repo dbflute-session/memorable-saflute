@@ -73,7 +73,7 @@ public class LastaRemoteApi extends FlutyRemoteApi {
             FlutyRemoteApiRule rule) {
         try {
             doValidate(param);
-        } catch (RemoteApiSimpleValidationErrorException e) {
+        } catch (RemoteApiSendReceiveValidationErrorException e) {
             final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
             br.addNotice("Validation Error as Param object for the remote API.");
             final String url = urlBase + actionPath + "/" + Arrays.asList(pathVariables);
@@ -93,7 +93,7 @@ public class LastaRemoteApi extends FlutyRemoteApi {
             Object ret, FlutyRemoteApiRule rule) {
         try {
             doValidate(ret);
-        } catch (RemoteApiSimpleValidationErrorException e) {
+        } catch (RemoteApiSendReceiveValidationErrorException e) {
             final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
             br.addNotice("Validation Error as Return object for the remote API.");
             setupRequestInfo(br, returnType, url, param);
@@ -163,7 +163,7 @@ public class LastaRemoteApi extends FlutyRemoteApi {
         final Object value = propertyDesc.getValue(bean);
         if (value == null) {
             String msg = "The field is not null but null value: field=" + buildFieldPath(pathList);
-            throw new RemoteApiSimpleValidationErrorException(msg);
+            throw new RemoteApiSendReceiveValidationErrorException(msg);
         }
     }
 
@@ -171,7 +171,7 @@ public class LastaRemoteApi extends FlutyRemoteApi {
         final Object value = propertyDesc.getValue(bean);
         if (value == null || isRequiredStringBadValue(value) || isRequiredListBadValue(value)) {
             String msg = "The field is required but no value: value=" + value + ", field=" + buildFieldPath(pathList);
-            throw new RemoteApiSimpleValidationErrorException(msg);
+            throw new RemoteApiSendReceiveValidationErrorException(msg);
         }
     }
 
@@ -187,11 +187,11 @@ public class LastaRemoteApi extends FlutyRemoteApi {
         return Srl.ltrim(pathList.stream().collect(Collectors.joining(".")), ".");
     }
 
-    public static class RemoteApiSimpleValidationErrorException extends RuntimeException {
+    public static class RemoteApiSendReceiveValidationErrorException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
 
-        public RemoteApiSimpleValidationErrorException(String msg) {
+        public RemoteApiSendReceiveValidationErrorException(String msg) {
             super(msg);
         }
     }
