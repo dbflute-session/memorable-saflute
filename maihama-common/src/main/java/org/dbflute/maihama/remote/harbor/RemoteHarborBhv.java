@@ -24,7 +24,7 @@ import org.dbflute.maihama.remote.harbor.product.RemoteHbProductRowReturn;
 import org.dbflute.maihama.remote.harbor.product.RemoteHbProductSearchParam;
 import org.dbflute.maihama.remote.harbor.signin.RemoteHbSigninParam;
 import org.dbflute.remoteapi.FlutyRemoteApiRule;
-import org.dbflute.saflute.core.remoteapi.SaflutyRemoteBehavior;
+import org.dbflute.saflute.core.remoteapi.LastaRemoteBehavior;
 import org.dbflute.saflute.core.remoteapi.mapping.LaVacantMappingPolicy;
 import org.dbflute.saflute.core.remoteapi.receiver.LaJsonReceiver;
 import org.dbflute.saflute.core.remoteapi.sender.body.LaJsonSender;
@@ -36,7 +36,7 @@ import org.lastaflute.di.helper.misc.ParameterizedRef;
 /**
  * @author jflute
  */
-public class RemoteHarborBhv extends SaflutyRemoteBehavior {
+public class RemoteHarborBhv extends LastaRemoteBehavior {
 
     // ===================================================================================
     //                                                                         Constructor

@@ -20,7 +20,7 @@ import org.dbflute.remoteapi.FlutyRemoteApiRule;
 /**
  * @author jflute
  */
-public class SaflutyRemoteApiRule extends FlutyRemoteApiRule {
+public class LastaRemoteApiRule extends FlutyRemoteApiRule {
 
     // for future
 }

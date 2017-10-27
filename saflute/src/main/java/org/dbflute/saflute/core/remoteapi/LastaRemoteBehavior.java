@@ -30,13 +30,12 @@ import org.dbflute.util.Srl;
 import org.seasar.framework.convention.NamingConvention;
 
 /**
- * The base class of behavior for remote API. <br>
- * Reference: <a href="http://dbflute.seasar.org/ja/lastaflute/howto/impldesign/jsondesign.html">JSON Design of JSON API</a>
+ * The base class of behavior for remote API.
  * @author awane
  * @author jflute
  * @author inoue
  */
-public abstract class SaflutyRemoteBehavior extends FlutyRemoteBehavior {
+public abstract class LastaRemoteBehavior extends FlutyRemoteBehavior {
 
     // ===================================================================================
     //                                                                           Attribute
@@ -57,9 +56,9 @@ public abstract class SaflutyRemoteBehavior extends FlutyRemoteBehavior {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public SaflutyRemoteBehavior(RequestManager requestManager) {
+    public LastaRemoteBehavior(RequestManager requestManager) {
         this.requestManager = requestManager;
-        ((SaflutyRemoteApi) remoteApi).acceptRequestManager(requestManager); // for constructor headache
+        ((LastaRemoteApi) remoteApi).acceptRequestManager(requestManager); // for constructor headache
     }
 
     @Override
@@ -77,6 +76,6 @@ public abstract class SaflutyRemoteBehavior extends FlutyRemoteBehavior {
 
     @Override
     protected FlutyRemoteApi newRemoteApi(Consumer<FlutyRemoteApiRule> ruleSetupper, Object callerExp) {
-        return new SaflutyRemoteApi(ruleSetupper, callerExp); // in constructor so you cannot use DI components
+        return new LastaRemoteApi(ruleSetupper, callerExp); // in constructor so you cannot use DI components
     }
 }

@@ -45,9 +45,9 @@ import org.slf4j.LoggerFactory;
 /**
  * @author jflute
  */
-public class SaflutyRemoteApi extends FlutyRemoteApi {
+public class LastaRemoteApi extends FlutyRemoteApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(SaflutyRemoteApi.class);
+    private static final Logger logger = LoggerFactory.getLogger(LastaRemoteApi.class);
 
     // ===================================================================================
     //                                                                           Attribute
@@ -57,7 +57,7 @@ public class SaflutyRemoteApi extends FlutyRemoteApi {
     // ===================================================================================
     //                                                                         Constructor
     //                                                                         ===========
-    public SaflutyRemoteApi(Consumer<FlutyRemoteApiRule> defaultOpLambda, Object callerExp) {
+    public LastaRemoteApi(Consumer<FlutyRemoteApiRule> defaultOpLambda, Object callerExp) {
         super(defaultOpLambda, callerExp);
     }
 
@@ -201,7 +201,7 @@ public class SaflutyRemoteApi extends FlutyRemoteApi {
     //                                                                      ==============
     @Override
     protected FlutyRemoteApiRule newRemoteApiRule() {
-        return new SaflutyRemoteApiRule();
+        return new LastaRemoteApiRule();
     }
 
     // ===================================================================================
