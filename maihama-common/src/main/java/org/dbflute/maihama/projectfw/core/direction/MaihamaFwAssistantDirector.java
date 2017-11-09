@@ -186,7 +186,7 @@ public abstract class MaihamaFwAssistantDirector extends CachedFwAssistantDirect
     }
 
     protected MaihamaActionAdjustmentProvider createActionAdjustmentProvider() {
-        return new MaihamaActionAdjustmentProvider();
+        return new MaihamaActionAdjustmentProvider(maihamaConfig);
     }
 
     protected void prepareMessage(OptionalActionDirection direction) {

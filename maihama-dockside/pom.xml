@@ -41,6 +41,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${basedir}/target/lastadoc</directory>
+							<targetPath>WEB-INF/classes</targetPath>
+							<includes>
+								<!-- for swagger -->
+								<include>swagger.json</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -83,8 +95,8 @@
 
 	<dependencies>
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-		<!--                                                                Main Framework -->
-		<!--                                                                 = = = = = = = -->
+		<!--																Main Framework -->
+		<!--																 = = = = = = = -->
 		<!-- application -->
 		<dependency>
 			<groupId>org.dbflute.maihama</groupId>
@@ -93,30 +105,28 @@
 		</dependency>
 
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-		<!--                                                                       Testing -->
-		<!--                                                                       = = = = -->
-		<!-- jetty -->
+		<!--																   Partner Library -->
+		<!--																   = = = = = = = = -->
+		<!-- swagger -->
 		<dependency>
-			<groupId>org.dbflute.jetty</groupId>
-			<artifactId>jetty-boot</artifactId>
-			<version>0.3.7</version>
-			<scope>provided</scope>
+			<groupId>org.webjars</groupId>
+			<artifactId>swagger-ui</artifactId>
+			<scope>runtime</scope>
 		</dependency>
+
+		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
+		<!--																	   Testing -->
+		<!--																	   = = = = -->
+		<!-- boot -->
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId> <!-- jetty-all does not contain JSP -->
-			<artifactId>jetty-jsp</artifactId>
-			<version>9.2.10.v20150310</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion> <!-- jstl already exists -->
-					<groupId>org.eclipse.jetty.orbit</groupId>
-					<artifactId>javax.servlet.jsp.jstl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.glassfish.web</groupId>
-					<artifactId>javax.servlet.jsp.jstl</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.dbflute.tomcat</groupId>
+			<artifactId>tomcat-boot</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency> <!-- for jsp -->
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>8.5.23</version>
 		</dependency>
 	</dependencies>
 </project>

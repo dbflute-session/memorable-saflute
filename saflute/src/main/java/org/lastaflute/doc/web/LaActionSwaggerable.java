@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 the original author or authors.
+ * Copyright 2014-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,20 +13,15 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.dbflute.maihama;
+package org.lastaflute.doc.web;
 
-import org.dbflute.tomcat.TomcatBoot;
+import org.dbflute.saflute.web.action.response.JsonResponse;
 
 /**
- * @author jflute
+ * @author p1us2er0
+ * @since 0.2.6 (2017/06/11 Sunday)
  */
-public class DocksideBoot {
+public interface LaActionSwaggerable {
 
-    public static void main(String[] args) {
-        TomcatBoot boot = new TomcatBoot(8088, "/dockside");
-        boot.useMetaInfoResourceDetect().useWebFragmentsDetect(jarName -> {
-            return jarName.contains("swagger-ui");
-        });
-        boot.asDevelopment().bootAwait();
-    }
+    JsonResponse json();
 }

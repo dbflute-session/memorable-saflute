@@ -37,6 +37,7 @@ import org.dbflute.saflute.db.dbflute.accesscontext.AccessContextArranger;
 import org.dbflute.saflute.db.dbflute.accesscontext.AccessContextResource;
 import org.dbflute.saflute.web.action.TypicalBaseAction;
 import org.dbflute.saflute.web.action.callback.ActionExecuteMeta;
+import org.dbflute.saflute.web.action.exception.ForcedRequest404NotFoundException;
 import org.dbflute.saflute.web.action.login.UserBean;
 
 /**
@@ -143,6 +144,29 @@ public abstract class MaihamaBaseAction extends TypicalBaseAction {
                 return trace;
             }
         };
+    }
+
+    // ===================================================================================
+    //                                                                     Verify Anything
+    //                                                                     ===============
+    /**
+     * Check the condition is true or it throws client error (e.g. 400 bad request) forcedly. <br>
+     * You can use this in your action process against invalid path parameters.
+     * <pre>
+     * verifyOrClientError("The pageNumber should be positive number: " + pageNumber, pageNumber &gt; 0);
+     * </pre>
+     * @param debugMsg The debug message for developer. (NotNull)
+     * @param expectedBool The expected determination for your business, true or false. (false: e.g. 404 not found)
+     */
+    protected void verifyOrClientError(String debugMsg, boolean expectedBool) { // application may call
+        assertArgumentNotNull("debugMsg", debugMsg);
+        if (!expectedBool) {
+            throwVerifiedClientError(debugMsg);
+        }
+    }
+
+    protected void throwVerifiedClientError(String debugMsg) {
+        throw new ForcedRequest404NotFoundException(debugMsg);
     }
 
     // ===================================================================================

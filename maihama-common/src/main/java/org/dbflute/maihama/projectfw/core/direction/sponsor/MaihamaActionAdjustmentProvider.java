@@ -19,6 +19,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.dbflute.maihama.projectfw.core.direction.MaihamaConfig;
+import org.dbflute.saflute.web.action.exception.ForcedRequest404NotFoundException;
 import org.dbflute.saflute.web.action.processor.ActionAdjustmentProvider;
 import org.dbflute.saflute.web.action.processor.ActionMappingWrapper;
 import org.dbflute.util.DfTypeUtil;
@@ -30,6 +32,18 @@ import org.seasar.struts.config.S2ExecuteConfig;
 public class MaihamaActionAdjustmentProvider implements ActionAdjustmentProvider {
 
     private static final int INDEXED_PROPERTY_SIZE_LIMIT = 200; // hard coding for now
+
+    // ===================================================================================
+    //                                                                           Attribute
+    //                                                                           =========
+    private final MaihamaConfig config;
+
+    // ===================================================================================
+    //                                                                         Constructor
+    //                                                                         ===========
+    public MaihamaActionAdjustmentProvider(MaihamaConfig config) {
+        this.config = config;
+    }
 
     public int provideIndexedPropertySizeLimit() {
         return INDEXED_PROPERTY_SIZE_LIMIT;
@@ -48,11 +62,36 @@ public class MaihamaActionAdjustmentProvider implements ActionAdjustmentProvider
     }
 
     public boolean isForcedRoutingTarget(HttpServletRequest request, String requestPath) {
+        if (isForced404NotFoundRouting(request, requestPath)) {
+            throw new ForcedRequest404NotFoundException("Forcedly 404 not found routing: " + requestPath);
+        }
         return false;
     }
 
     public boolean isForcedSuppressRedirectWithSlash(HttpServletRequest request, String requestPath, S2ExecuteConfig executeConfig) {
         return false;
+    }
+
+    // ===================================================================================
+    //                                                                             Routing
+    //                                                                             =======
+    public boolean isForced404NotFoundRouting(HttpServletRequest request, String requestPath) {
+        if (isSwaggerIllegalAccess(isSwaggerEnabled(), requestPath)) { // e.g. swagger's html, css
+            return true; // to suppress direct access to swagger resources at e.g. production
+        }
+        return false;
+    }
+
+    protected boolean isSwaggerEnabled() {
+        return config.isSwaggerEnabled();
+    }
+
+    protected boolean isSwaggerIllegalAccess(boolean swaggerEnabled, String requestPath) { // used by e.g. isForced404NotFoundRouting()
+        return !swaggerEnabled && isSwaggerRequest(requestPath); // e.g. swagger's html, css
+    }
+
+    public boolean isSwaggerRequest(String requestPath) {
+        return requestPath.startsWith("/webjars/swagger-ui") || requestPath.startsWith("/swagger");
     }
 
     public String customizeActionMappingRequestPath(String requestPath) {

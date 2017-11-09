@@ -37,6 +37,9 @@ public interface MaihamaEnv {
     /** The key of the configuration. e.g. 10 */
     String JDBC_CONNECTION_POOLING_SIZE = "jdbc.connection.pooling.size";
 
+    /** The key of the configuration. e.g. true */
+    String SWAGGER_ENABLED = "swagger.enabled";
+
     /**
      * Get the value of property as {@link String}.
      * @param propertyKey The key of the property. (NotNull)
@@ -174,6 +177,22 @@ public interface MaihamaEnv {
     Integer getJdbcConnectionPoolingSizeAsInteger();
 
     /**
+     * Get the value for the key 'swagger.enabled'. <br />
+     * The value is, e.g. true <br />
+     * comment: is it use swagger in this environment?
+     * @return The value of found property. (NullAllowed: if null, not found)
+     */
+    String getSwaggerEnabled();
+
+    /**
+     * Is the property for the key 'swagger.enabled' true? <br />
+     * The value is, e.g. true <br />
+     * comment: is it use swagger in this environment?
+     * @return The determination, true or false. (if the property can be true, returns true)
+     */
+    boolean isSwaggerEnabled();
+
+    /**
      * The simple implementation for configuration.
      * @author FreeGen
      */
@@ -255,6 +274,16 @@ public interface MaihamaEnv {
         /** {@inheritDoc} */
         public Integer getJdbcConnectionPoolingSizeAsInteger() {
             return getAsInteger(MaihamaEnv.JDBC_CONNECTION_POOLING_SIZE);
+        }
+
+        /** {@inheritDoc} */
+        public String getSwaggerEnabled() {
+            return get(MaihamaEnv.SWAGGER_ENABLED);
+        }
+
+        /** {@inheritDoc} */
+        public boolean isSwaggerEnabled() {
+            return is(MaihamaEnv.SWAGGER_ENABLED);
         }
     }
 }

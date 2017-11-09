@@ -35,6 +35,7 @@
 		<gson.version>2.8.2</gson.version> <!-- #remoteapi -->
 		<javax.mail.version>1.4.5</javax.mail.version>
 		<velocity.version>1.7</velocity.version>
+		<swagger.ui.version>2.2.10-1</swagger.ui.version>
 
 		<!-- Various Utility -->
 		<commons.lang.version>2.5</commons.lang.version>
@@ -53,6 +54,7 @@
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version>
 		<utflute.version>0.8.1</utflute.version>
+		<tomcat.boot.version>0.6.0</tomcat.boot.version>
 	</properties>
 
 	<licenses>
@@ -196,8 +198,8 @@
 	<dependencyManagement>
 		<dependencies>
 			<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-			<!--                                                            Main Framework -->
-			<!--                                                             = = = = = = = -->
+			<!--															Main Framework -->
+			<!--															 = = = = = = = -->
 			<!-- saflute -->
 			<dependency>
 				<groupId>org.dbflute.saflute</groupId>
@@ -241,8 +243,8 @@
 			<!-- seasar -->
 			<dependency>
 				<groupId>org.seasar.container</groupId>
-	            <artifactId>s2-extension</artifactId>
-	            <version>${seasar.version}</version>
+				<artifactId>s2-extension</artifactId>
+				<version>${seasar.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>jboss</groupId>
@@ -262,14 +264,14 @@
 				</exclusions>
 			</dependency>
 			<dependency>
-			    <groupId>org.javassist</groupId>
-			    <artifactId>javassist</artifactId>
-			    <version>${javassist.version}</version>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>${javassist.version}</version>
 			</dependency>
 			<dependency>
-			    <groupId>org.seasar.cms.s2-classbuilder</groupId>
-			    <artifactId>s2-classbuilder</artifactId>
-			    <version>${classbuilder.version}</version>
+				<groupId>org.seasar.cms.s2-classbuilder</groupId>
+				<artifactId>s2-classbuilder</artifactId>
+				<version>${classbuilder.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>org.seasar.container</groupId>
@@ -350,8 +352,8 @@
 			</dependency>
 
 			<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-			<!--                                                           Partner Library -->
-			<!--                                                           = = = = = = = = -->
+			<!--														   Partner Library -->
+			<!--														   = = = = = = = = -->
 			<!-- jsonic (json parser) -->
 			<dependency>
 				<groupId>net.arnx</groupId>
@@ -370,10 +372,17 @@
 				<artifactId>velocity</artifactId>
 				<version>${velocity.version}</version>
 			</dependency>
+			<!-- swagger -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>swagger-ui</artifactId>
+				<version>${swagger.ui.version}</version>
+				<scope>runtime</scope>
+			</dependency>
 
 			<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-			<!--                                                           Various Utility -->
-			<!--                                                           = = = = = = = = -->
+			<!--														   Various Utility -->
+			<!--														   = = = = = = = = -->
 			<!-- commons -->
 			<dependency>
 				<groupId>commons-lang</groupId>
@@ -402,8 +411,8 @@
 			</dependency>
 
 			<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
-			<!--                                                                   Testing -->
-			<!--                                                                   = = = = -->
+			<!--																   Testing -->
+			<!--																   = = = = -->
 			<!-- junit -->
 			<dependency>
 				<groupId>junit</groupId>
@@ -415,6 +424,12 @@
 				<groupId>org.dbflute.utflute</groupId>
 				<artifactId>utflute-seasar</artifactId>
 				<version>${utflute.version}</version>
+			</dependency>
+			<!-- boot -->
+			<dependency>
+				<groupId>org.dbflute.tomcat</groupId>
+				<artifactId>tomcat-boot</artifactId>
+				<version>${tomcat.boot.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -432,25 +447,20 @@
 		</dependency>
 
 		<!-- servlet -->
-		<!--
-		 servlet container provides servlet/jsp-api
-		 but jstl/taglibs are not provided in tomcat (jetty provides)
-		 *see the blog for the details:
-		   http://d.hatena.ne.jp/jflute/20130122/1358862492
-		 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<scope>provided</scope> <!-- servlet container provides -->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>javax.servlet.jsp-api</artifactId>
-			<scope>provided</scope> <!-- servlet container provides -->
 		</dependency>
-		<dependency>
-			<groupId>jstl</groupId>
+		<dependency> <!-- tomcat does not provides, jetty's two jar files so here -->
+			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
+			<version>1.2</version> <!-- contains taglibs.standard -->
+			<!-- should be as jar file in executable war to detect tld files -->
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- junit -->
