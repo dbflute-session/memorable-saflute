@@ -124,7 +124,8 @@ public class LastaRemoteApi extends FlutyRemoteApi {
                 String last = pathList.removeLast();
                 pathList.addLast((last.isEmpty() ? "list" : last) + "[" + index + "]");
                 actuallyValidate(element, pathList);
-                pathList.removeLast();
+                pathList.removeLast(); // remove last element with "[]"
+                pathList.addLast(last); // restore last element for next loop
                 ++index;
             }
         } else {
