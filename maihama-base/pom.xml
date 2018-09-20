@@ -20,8 +20,8 @@
 
 		<!-- Main Framework -->
 		<saflute.version>1.0.0-SNAPSHOT</saflute.version>
-		<dbflute.version>1.1.4</dbflute.version>
-		<mysql.jdbc.version>5.1.37</mysql.jdbc.version>
+		<dbflute.version>1.1.8</dbflute.version>
+		<mysql.jdbc.version>5.1.46</mysql.jdbc.version>
 		<seasar.version>2.4.46</seasar.version>
 		<javassist.version>3.20.0-GA</javassist.version> <!-- java8 needs newer version -->
 		<classbuilder.version>0.0.11</classbuilder.version>
@@ -53,8 +53,8 @@
 
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version>
-		<utflute.version>0.8.1</utflute.version>
-		<tomcat.boot.version>0.6.0</tomcat.boot.version>
+		<utflute.version>0.8.8</utflute.version>
+		<tomcat.boot.version>0.6.2</tomcat.boot.version>
 	</properties>
 
 	<licenses>

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en"> <!-- main language (to avoid HTML validator) -->
 <head>
 	<meta charset="UTF-8" />
 	<title>Properties for Maihama</title>
 	<style type="text/css">
+/* -------------------------------------------------
+                                             Core
+------------------------------------------------- */
 * {
 	margin: 0;
 	padding: 0;
@@ -15,7 +18,9 @@ body {
 	background-color: #ffffe0;
 }
 
-/* heading */
+/* -------------------------------------------------
+                                        Structure
+------------------------------------------------- */
 h1 {
 	font-size: 1.5em;
 	border-bottom: 2px solid #af0000;
@@ -43,6 +48,10 @@ h4 {
 	font-size: 1.4em;
 	color: #333333;
 }
+
+/* -------------------------------------------------
+                                     Whole Header
+------------------------------------------------- */
 .navilinkarea {
 	text-align: right;
 }
@@ -58,7 +67,9 @@ h4 {
 	font-size: 80%;
 }
 
-/* table */
+/* -------------------------------------------------
+                                       Properties
+------------------------------------------------- */
 table {
 	border-collapse:collapse;
 }
@@ -207,7 +218,7 @@ table.child, table.child td, table.child th {
 			<td class="filecell"><strong>../src/main/resources/maihama_env.properties</strong></td>
 			<td class="envtypecell">-</td>
 			<td class="langtypecell">-</td>
-			<td class="sizecell">10</td>
+			<td class="sizecell">11</td>
 			<td>&nbsp;</td>
 			<td class="markcell">-</td>
 			<td class="markcell">-</td>
@@ -221,7 +232,9 @@ table.child, table.child td, table.child th {
 			<td class="keylistcell">
 				<p class="diffprop">mail.smtp.server.batch.host.and.port</p>
 			</td>
-			<td>&nbsp;</td>
+			<td class="keylistcell">
+				<p class="diffprop">swagger.enabled</p>
+			</td>
 		</tr>
 		<tr>
 			<td class="filecell">../src/production/resources/maihama_env.properties</td>
@@ -232,7 +245,9 @@ table.child, table.child td, table.child th {
 			<td class="keylistcell">
 				<p class="diffprop">mail.smtp.server.batch.host.and.port</p>
 			</td>
-			<td>&nbsp;</td>
+			<td class="keylistcell">
+				<p class="diffprop">swagger.enabled</p>
+			</td>
 		</tr>
 	</tbody>
 </table>
@@ -768,6 +783,28 @@ table.child, table.child td, table.child th {
 	</tr>
 	<tr>
 		<td class="rownumcell">11</td>
+		<td class="keycell">swagger.enabled</td>
+		<td>
+			<table class="child">
+				<tr>
+					<th>Env</th>
+					<th>Lang</th>
+					<th>Property</th>
+					<th><span title="Unique No (same value, same No)">uq</span></th>
+					<th>Comment</th>
+				</tr>
+				<tr>
+					<td class="envtypecell">-</td>
+					<td class="langtypecell">-</td>
+					<td class="valuecell">true</td>
+					<td class="uniquenocell">1</td>
+					<td class="commentcell">is&nbsp;it&nbsp;use&nbsp;swagger&nbsp;in&nbsp;this&nbsp;environment?</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td class="rownumcell">12</td>
 		<td class="keycell">mail.smtp.server.batch.host.and.port</td>
 		<td>
 			<table class="child">

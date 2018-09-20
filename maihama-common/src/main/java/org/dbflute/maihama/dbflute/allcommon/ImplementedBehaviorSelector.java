@@ -156,17 +156,17 @@ public class ImplementedBehaviorSelector implements BehaviorSelector {
         assertObjectNotNull("componentType", componentType);
         assertObjectNotNull("_container", _container);
         try {
-		    return (COMPONENT)_container.getComponent(componentType);
-		} catch (ComponentNotFoundRuntimeException e) { // normally it doesn't come.
-		    final COMPONENT component;
-		    try {
-		        component = (COMPONENT)_container.getRoot().getComponent(componentType); // retry for HotDeploy mode
-		    } catch (ComponentNotFoundRuntimeException ignored) {
-		        throw e;
-		    }
-		    _container = _container.getRoot(); // change container
-		    return component;
-		}
+            return (COMPONENT)_container.getComponent(componentType);
+        } catch (ComponentNotFoundRuntimeException e) { // normally it doesn't come.
+            final COMPONENT component;
+            try {
+                component = (COMPONENT)_container.getRoot().getComponent(componentType); // retry for HotDeploy mode
+            } catch (ComponentNotFoundRuntimeException ignored) {
+                throw e;
+            }
+            _container = _container.getRoot(); // change container
+            return component;
+        }
     }
 
     // ===================================================================================

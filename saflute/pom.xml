@@ -13,7 +13,7 @@
 	<inceptionYear>2014</inceptionYear>
 
 	<properties>
-		<dbflute.version>1.1.4</dbflute.version>
+		<dbflute.version>1.1.8</dbflute.version>
 		<seasar.version>2.4.46</seasar.version>
 		<javassist.version>3.20.0-GA</javassist.version> <!-- java8 needs newer version -->
 		<classbuilder.version>0.0.11</classbuilder.version>
@@ -21,7 +21,7 @@
 		<!-- <remoflute.version>0.1.0</remoflute.version> --> <!-- #remoteapi -->
 		<gson.version>2.8.2</gson.version> <!-- #remoteapi -->
 		<javaparser.version>3.5.1</javaparser.version>
-		<utflute.version>0.8.1</utflute.version>
+		<utflute.version>0.8.8</utflute.version>
 	</properties>
 
 	<licenses>
