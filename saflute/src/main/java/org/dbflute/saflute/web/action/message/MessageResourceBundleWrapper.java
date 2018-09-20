@@ -15,7 +15,7 @@
  */
 package org.dbflute.saflute.web.action.message;
 
-import org.seasar.framework.message.MessageResourceBundle;
+import org.dbflute.saflute.web.action.message.bundle.MessageResourceBundle;
 
 /**
  * The wrapper of message resource bundle for extends handling. <br>

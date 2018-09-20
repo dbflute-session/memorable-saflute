@@ -71,6 +71,7 @@ public class ObjectiveConfig implements AccessibleConfig, Serializable {
         direct();
         final ObjectiveProperties makingProp = newObjectiveProperties();
         makingProp.checkImplicitOverride();
+        makingProp.encodeAsUTF8();
         if (!extendsResourceList.isEmpty()) {
             makingProp.extendsProperties(extendsResourceList.toArray(new String[extendsResourceList.size()]));
         }

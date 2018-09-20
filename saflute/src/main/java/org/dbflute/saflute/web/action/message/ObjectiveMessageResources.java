@@ -31,6 +31,8 @@ import org.dbflute.helper.message.ExceptionMessageBuilder;
 import org.dbflute.saflute.core.direction.FwAssistantDirector;
 import org.dbflute.saflute.core.util.ContainerUtil;
 import org.dbflute.saflute.web.action.OptionalActionDirection;
+import org.dbflute.saflute.web.action.message.bundle.MessageResourceBundle;
+import org.dbflute.saflute.web.action.message.bundle.MessageResourceBundleFactory;
 import org.dbflute.saflute.web.action.message.exception.MessageLabelByLabelParameterNotFoundException;
 import org.dbflute.saflute.web.action.message.exception.MessageLabelByLabelVariableInfinityLoopException;
 import org.dbflute.saflute.web.action.message.exception.MessageLabelByLabelVariableInvalidKeyException;
@@ -41,8 +43,6 @@ import org.dbflute.util.DfCollectionUtil;
 import org.dbflute.util.DfStringUtil;
 import org.dbflute.util.DfTypeUtil;
 import org.dbflute.util.Srl.ScopeInfo;
-import org.seasar.framework.message.MessageResourceBundle;
-import org.seasar.framework.message.MessageResourceBundleFactory;
 import org.seasar.framework.util.ResourceUtil;
 import org.seasar.struts.util.S2PropertyMessageResources;
 
@@ -192,8 +192,7 @@ public class ObjectiveMessageResources extends S2PropertyMessageResources {
      * @param locale The locale of current request. (NullAllowed: when system default locale)
      * @return The found bundle that has extends hierarchy. (NotNull)
      */
-    protected MessageResourceBundle getBundleResolvedExtends(String domainMessageName, List<String> extendsNameList,
-            Locale locale) {
+    protected MessageResourceBundle getBundleResolvedExtends(String domainMessageName, List<String> extendsNameList, Locale locale) {
         final MessageResourceBundle domainBundle = findBundleSimply(domainMessageName, locale);
         if (extendsNameList.isEmpty()) { // no extends, no logic
             return domainBundle;
@@ -332,8 +331,7 @@ public class ObjectiveMessageResources extends S2PropertyMessageResources {
      * @param extendsLevel The level as integer for extends. e.g. first extends is 1 (NullAllowed: when domain)
      * @return The wrapper for the bundle. (NotNull)
      */
-    protected MessageResourceBundleWrapper wrapBundle(String messageName, MessageResourceBundle bundle,
-            Integer extendsLevel) {
+    protected MessageResourceBundleWrapper wrapBundle(String messageName, MessageResourceBundle bundle, Integer extendsLevel) {
         final boolean existsDefaultLangProperties = existsDefaultLangProperties(messageName);
         final List<MessageResourceBundle> bundleList = new ArrayList<MessageResourceBundle>();
         bundleList.add(bundle);
@@ -352,8 +350,8 @@ public class ObjectiveMessageResources extends S2PropertyMessageResources {
         return createBundleWrapper(bundle, isDefaultLangBundle(existsDefaultLangProperties, bundle), null, extendsLevel);
     }
 
-    protected MessageResourceBundleWrapper createBundleWrapper(MessageResourceBundle bundle, boolean defaultLang,
-            Integer parentLevel, Integer extendsLevel) {
+    protected MessageResourceBundleWrapper createBundleWrapper(MessageResourceBundle bundle, boolean defaultLang, Integer parentLevel,
+            Integer extendsLevel) {
         return new MessageResourceBundleWrapper(bundle, defaultLang, parentLevel, extendsLevel);
     }
 
@@ -498,8 +496,7 @@ public class ObjectiveMessageResources extends S2PropertyMessageResources {
         return resolved;
     }
 
-    protected void throwMessageLabelByLabelVariableInvalidKeyException(Locale locale, String key, String message,
-            String labelVar) {
+    protected void throwMessageLabelByLabelVariableInvalidKeyException(Locale locale, String key, String message, String labelVar) {
         final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
         br.addNotice("The label key of the label variable was invalid.");
         br.addItem("Advice");
@@ -520,8 +517,7 @@ public class ObjectiveMessageResources extends S2PropertyMessageResources {
         throw new MessageLabelByLabelVariableInvalidKeyException(msg);
     }
 
-    protected void throwMessageLabelByLabelVariableInfinityLoopException(Locale locale, String labelVar,
-            Set<String> callerKeySet) {
+    protected void throwMessageLabelByLabelVariableInfinityLoopException(Locale locale, String labelVar, Set<String> callerKeySet) {
         final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
         br.addNotice("Found the infinity loop in the message.");
         br.addItem("Locale");
@@ -534,8 +530,7 @@ public class ObjectiveMessageResources extends S2PropertyMessageResources {
         throw new MessageLabelByLabelVariableInfinityLoopException(msg);
     }
 
-    protected void throwMessageLabelByLabelVariableNotFoundException(Locale locale, String key, String message,
-            String labelVar) {
+    protected void throwMessageLabelByLabelVariableNotFoundException(Locale locale, String key, String message, String labelVar) {
         final ExceptionMessageBuilder br = new ExceptionMessageBuilder();
         br.addNotice("Not found the label by the label variable.");
         br.addItem("Locale");
