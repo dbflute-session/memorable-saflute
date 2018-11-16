@@ -15,6 +15,8 @@
  */
 package org.dbflute.maihama.dbflute.exentity;
 
+import java.time.LocalDate;
+
 import org.dbflute.maihama.dbflute.bsentity.BsProduct;
 
 /**
@@ -24,9 +26,30 @@ import org.dbflute.maihama.dbflute.bsentity.BsProduct;
  * This class remains when re-generating.
  * </p>
  * @author DBFlute(AutoGenerator)
+ * @author jflute
  */
 public class Product extends BsProduct {
 
     /** Serial version UID. (Default) */
     private static final long serialVersionUID = 1L;
+    /** LATEST_PURCHASE_DATE: Derived Referrer Alias. */
+    public static final String ALIAS_latestPurchaseDate = "LATEST_PURCHASE_DATE";
+    /** LATEST_PURCHASE_DATE: (Derived Referrer) */
+    protected LocalDate _latestPurchaseDate;
+
+    /**
+     * [get] LATEST_PURCHASE_DATE: (Derived Referrer)
+     * @return The value of the column 'LATEST_PURCHASE_DATE'. (NullAllowed)
+     */
+    public LocalDate getLatestPurchaseDate() {
+        return _latestPurchaseDate;
+    }
+
+    /**
+     * [set] LATEST_PURCHASE_DATE: (Derived Referrer)
+     * @param latestPurchaseDate The value of the column 'LATEST_PURCHASE_DATE'. (NullAllowed)
+     */
+    public void setLatestPurchaseDate(LocalDate latestPurchaseDate) {
+        _latestPurchaseDate = latestPurchaseDate;
+    }
 }
