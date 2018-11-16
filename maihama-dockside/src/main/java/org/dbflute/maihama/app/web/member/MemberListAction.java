@@ -98,7 +98,7 @@ public class MemberListAction extends DocksideBaseAction {
                 });
                 bean.formalizedDate = toStringDate(member.getFormalizedDatetime());
                 bean.updateDatetime = toStringDateTime(member.getUpdateDatetime());
-                bean.withdrawalMember = member.isMemberStatusCode退会会員();
+                bean.withdrawalMember = member.isMemberStatusCodeWithdrawal();
                 bean.purchaseCount = member.getPurchaseCount();
                 return bean;
             }).collect(toList());

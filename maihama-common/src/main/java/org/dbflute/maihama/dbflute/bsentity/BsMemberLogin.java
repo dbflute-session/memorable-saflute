@@ -211,27 +211,27 @@ public abstract class BsMemberLogin extends AbstractEntity implements DomainEnti
     }
 
     /**
-     * Set the value of loginMemberStatusCode as 正式会員 (FML). <br>
-     * 正式会員: 正式な会員としてサイトサービスが利用可能
+     * Set the value of loginMemberStatusCode as Formalized (FML). <br>
+     * Formalized: as formal member, allowed to use all service
      */
-    public void setLoginMemberStatusCode_正式会員() {
-        setLoginMemberStatusCodeAsMemberStatus(CDef.MemberStatus.正式会員);
+    public void setLoginMemberStatusCode_Formalized() {
+        setLoginMemberStatusCodeAsMemberStatus(CDef.MemberStatus.Formalized);
     }
 
     /**
-     * Set the value of loginMemberStatusCode as 退会会員 (WDL). <br>
-     * 退会会員: 退会が確定した会員でサイトサービスはダメ
+     * Set the value of loginMemberStatusCode as Withdrawal (WDL). <br>
+     * Withdrawal: withdrawal is fixed, not allowed to use service
      */
-    public void setLoginMemberStatusCode_退会会員() {
-        setLoginMemberStatusCodeAsMemberStatus(CDef.MemberStatus.退会会員);
+    public void setLoginMemberStatusCode_Withdrawal() {
+        setLoginMemberStatusCodeAsMemberStatus(CDef.MemberStatus.Withdrawal);
     }
 
     /**
-     * Set the value of loginMemberStatusCode as 仮会員 (PRV). <br>
-     * 仮会員: 入会直後のステータスで一部のサイトサービスが利用可能
+     * Set the value of loginMemberStatusCode as Provisional (PRV). <br>
+     * Provisional: first status after entry, allowed to use only part of service
      */
-    public void setLoginMemberStatusCode_仮会員() {
-        setLoginMemberStatusCodeAsMemberStatus(CDef.MemberStatus.仮会員);
+    public void setLoginMemberStatusCode_Provisional() {
+        setLoginMemberStatusCodeAsMemberStatus(CDef.MemberStatus.Provisional);
     }
 
     // ===================================================================================
@@ -260,41 +260,41 @@ public abstract class BsMemberLogin extends AbstractEntity implements DomainEnti
     }
 
     /**
-     * Is the value of loginMemberStatusCode 正式会員? <br>
-     * 正式会員: 正式な会員としてサイトサービスが利用可能
+     * Is the value of loginMemberStatusCode Formalized? <br>
+     * Formalized: as formal member, allowed to use all service
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isLoginMemberStatusCode正式会員() {
+    public boolean isLoginMemberStatusCodeFormalized() {
         CDef.MemberStatus cdef = getLoginMemberStatusCodeAsMemberStatus();
-        return cdef != null ? cdef.equals(CDef.MemberStatus.正式会員) : false;
+        return cdef != null ? cdef.equals(CDef.MemberStatus.Formalized) : false;
     }
 
     /**
-     * Is the value of loginMemberStatusCode 退会会員? <br>
-     * 退会会員: 退会が確定した会員でサイトサービスはダメ
+     * Is the value of loginMemberStatusCode Withdrawal? <br>
+     * Withdrawal: withdrawal is fixed, not allowed to use service
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isLoginMemberStatusCode退会会員() {
+    public boolean isLoginMemberStatusCodeWithdrawal() {
         CDef.MemberStatus cdef = getLoginMemberStatusCodeAsMemberStatus();
-        return cdef != null ? cdef.equals(CDef.MemberStatus.退会会員) : false;
+        return cdef != null ? cdef.equals(CDef.MemberStatus.Withdrawal) : false;
     }
 
     /**
-     * Is the value of loginMemberStatusCode 仮会員? <br>
-     * 仮会員: 入会直後のステータスで一部のサイトサービスが利用可能
+     * Is the value of loginMemberStatusCode Provisional? <br>
+     * Provisional: first status after entry, allowed to use only part of service
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isLoginMemberStatusCode仮会員() {
+    public boolean isLoginMemberStatusCodeProvisional() {
         CDef.MemberStatus cdef = getLoginMemberStatusCodeAsMemberStatus();
-        return cdef != null ? cdef.equals(CDef.MemberStatus.仮会員) : false;
+        return cdef != null ? cdef.equals(CDef.MemberStatus.Provisional) : false;
     }
 
     /**
      * サービスが利用できる会員 <br>
-     * The group elements:[正式会員, 仮会員]
+     * The group elements:[Formalized, Provisional]
      * @return The determination, true or false.
      */
     public boolean isLoginMemberStatusCode_ServiceAvailable() {
@@ -304,7 +304,7 @@ public abstract class BsMemberLogin extends AbstractEntity implements DomainEnti
 
     /**
      * まだ正式会員に達してない会員 <br>
-     * The group elements:[仮会員]
+     * The group elements:[Provisional]
      * @return The determination, true or false.
      */
     public boolean isLoginMemberStatusCode_ShortOfFormalized() {

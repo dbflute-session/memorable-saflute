@@ -196,82 +196,82 @@ public abstract class BsMemberAddress extends AbstractEntity implements DomainEn
     //                                                              Classification Setting
     //                                                              ======================
     /**
-     * Set the value of regionId as アメリカ (1). <br>
-     * アメリカ
+     * Set the value of regionId as America (1). <br>
+     * AMERICA
      */
-    public void setRegionId_アメリカ() {
-        setRegionIdAsRegion(CDef.Region.アメリカ);
+    public void setRegionId_America() {
+        setRegionIdAsRegion(CDef.Region.America);
     }
 
     /**
-     * Set the value of regionId as カナダ (2). <br>
-     * カナダ
+     * Set the value of regionId as Canada (2). <br>
+     * CANADA
      */
-    public void setRegionId_カナダ() {
-        setRegionIdAsRegion(CDef.Region.カナダ);
+    public void setRegionId_Canada() {
+        setRegionIdAsRegion(CDef.Region.Canada);
     }
 
     /**
-     * Set the value of regionId as 中国 (3). <br>
-     * 中国
+     * Set the value of regionId as China (3). <br>
+     * CHINA
      */
-    public void setRegionId_中国() {
-        setRegionIdAsRegion(CDef.Region.中国);
+    public void setRegionId_China() {
+        setRegionIdAsRegion(CDef.Region.China);
     }
 
     /**
-     * Set the value of regionId as 千葉 (4). <br>
-     * 千葉
+     * Set the value of regionId as Chiba (4). <br>
+     * CHIBA
      */
-    public void setRegionId_千葉() {
-        setRegionIdAsRegion(CDef.Region.千葉);
+    public void setRegionId_Chiba() {
+        setRegionIdAsRegion(CDef.Region.Chiba);
     }
 
     // ===================================================================================
     //                                                        Classification Determination
     //                                                        ============================
     /**
-     * Is the value of regionId アメリカ? <br>
-     * アメリカ
+     * Is the value of regionId America? <br>
+     * AMERICA
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isRegionIdアメリカ() {
+    public boolean isRegionIdAmerica() {
         CDef.Region cdef = getRegionIdAsRegion();
-        return cdef != null ? cdef.equals(CDef.Region.アメリカ) : false;
+        return cdef != null ? cdef.equals(CDef.Region.America) : false;
     }
 
     /**
-     * Is the value of regionId カナダ? <br>
-     * カナダ
+     * Is the value of regionId Canada? <br>
+     * CANADA
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isRegionIdカナダ() {
+    public boolean isRegionIdCanada() {
         CDef.Region cdef = getRegionIdAsRegion();
-        return cdef != null ? cdef.equals(CDef.Region.カナダ) : false;
+        return cdef != null ? cdef.equals(CDef.Region.Canada) : false;
     }
 
     /**
-     * Is the value of regionId 中国? <br>
-     * 中国
+     * Is the value of regionId China? <br>
+     * CHINA
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isRegionId中国() {
+    public boolean isRegionIdChina() {
         CDef.Region cdef = getRegionIdAsRegion();
-        return cdef != null ? cdef.equals(CDef.Region.中国) : false;
+        return cdef != null ? cdef.equals(CDef.Region.China) : false;
     }
 
     /**
-     * Is the value of regionId 千葉? <br>
-     * 千葉
+     * Is the value of regionId Chiba? <br>
+     * CHIBA
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
-    public boolean isRegionId千葉() {
+    public boolean isRegionIdChiba() {
         CDef.Region cdef = getRegionIdAsRegion();
-        return cdef != null ? cdef.equals(CDef.Region.千葉) : false;
+        return cdef != null ? cdef.equals(CDef.Region.Chiba) : false;
     }
 
     // ===================================================================================

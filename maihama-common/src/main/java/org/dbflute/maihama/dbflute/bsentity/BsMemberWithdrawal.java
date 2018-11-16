@@ -170,7 +170,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
     //                                                              ======================
     /**
      * Set the value of withdrawalReasonCode as Sit (SIT). <br>
-     * SIT: サイトが使いにくいから
+     * SIT: site is not kindness
      */
     public void setWithdrawalReasonCode_Sit() {
         setWithdrawalReasonCodeAsWithdrawalReason(CDef.WithdrawalReason.Sit);
@@ -178,7 +178,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
 
     /**
      * Set the value of withdrawalReasonCode as Prd (PRD). <br>
-     * PRD: 商品に魅力がないから
+     * PRD: no attractive product
      */
     public void setWithdrawalReasonCode_Prd() {
         setWithdrawalReasonCodeAsWithdrawalReason(CDef.WithdrawalReason.Prd);
@@ -186,7 +186,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
 
     /**
      * Set the value of withdrawalReasonCode as Frt (FRT). <br>
-     * FRT: フリテンだから
+     * FRT: because of furiten
      */
     public void setWithdrawalReasonCode_Frt() {
         setWithdrawalReasonCodeAsWithdrawalReason(CDef.WithdrawalReason.Frt);
@@ -194,7 +194,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
 
     /**
      * Set the value of withdrawalReasonCode as Oth (OTH). <br>
-     * OTH: その他理由
+     * OTH: other reasons
      */
     public void setWithdrawalReasonCode_Oth() {
         setWithdrawalReasonCodeAsWithdrawalReason(CDef.WithdrawalReason.Oth);
@@ -205,7 +205,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
     //                                                        ============================
     /**
      * Is the value of withdrawalReasonCode Sit? <br>
-     * SIT: サイトが使いにくいから
+     * SIT: site is not kindness
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
@@ -216,7 +216,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
 
     /**
      * Is the value of withdrawalReasonCode Prd? <br>
-     * PRD: 商品に魅力がないから
+     * PRD: no attractive product
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
@@ -227,7 +227,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
 
     /**
      * Is the value of withdrawalReasonCode Frt? <br>
-     * FRT: フリテンだから
+     * FRT: because of furiten
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */
@@ -238,7 +238,7 @@ public abstract class BsMemberWithdrawal extends AbstractEntity implements Domai
 
     /**
      * Is the value of withdrawalReasonCode Oth? <br>
-     * OTH: その他理由
+     * OTH: other reasons
      * <p>It's treated as case insensitive and if the code value is null, it returns false.</p>
      * @return The determination, true or false.
      */

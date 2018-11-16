@@ -157,14 +157,14 @@ public interface CDef extends Classification {
      * 入会から退会までの会員のステータスを示す
      */
     public enum MemberStatus implements CDef {
-        /** 正式会員: 正式な会員としてサイトサービスが利用可能 */
-        正式会員("FML", "正式会員", emptyStrings())
+        /** Formalized: as formal member, allowed to use all service */
+        Formalized("FML", "Formalized", emptyStrings())
         ,
-        /** 退会会員: 退会が確定した会員でサイトサービスはダメ */
-        退会会員("WDL", "退会会員", emptyStrings())
+        /** Withdrawal: withdrawal is fixed, not allowed to use service */
+        Withdrawal("WDL", "Withdrawal", emptyStrings())
         ,
-        /** 仮会員: 入会直後のステータスで一部のサイトサービスが利用可能 */
-        仮会員("PRV", "仮会員", emptyStrings())
+        /** Provisional: first status after entry, allowed to use only part of service */
+        Provisional("PRV", "Provisional", emptyStrings())
         ;
         private static final Map<String, MemberStatus> _codeClsMap = new HashMap<String, MemberStatus>();
         private static final Map<String, MemberStatus> _nameClsMap = new HashMap<String, MemberStatus>();
@@ -186,21 +186,21 @@ public interface CDef extends Classification {
         /**
          * Is the classification in the group? <br>
          * サービスが利用できる会員 <br>
-         * The group elements:[正式会員, 仮会員]
+         * The group elements:[Formalized, Provisional]
          * @return The determination, true or false.
          */
         public boolean isServiceAvailable() {
-            return 正式会員.equals(this) || 仮会員.equals(this);
+            return Formalized.equals(this) || Provisional.equals(this);
         }
 
         /**
          * Is the classification in the group? <br>
          * まだ正式会員に達してない会員 <br>
-         * The group elements:[仮会員]
+         * The group elements:[Provisional]
          * @return The determination, true or false.
          */
         public boolean isShortOfFormalized() {
-            return 仮会員.equals(this);
+            return Provisional.equals(this);
         }
 
         public boolean inGroup(String groupName) {
@@ -293,21 +293,21 @@ public interface CDef extends Classification {
         /**
          * Get the list of group classification elements. (returns new copied list) <br>
          * サービスが利用できる会員 <br>
-         * The group elements:[正式会員, 仮会員]
+         * The group elements:[Formalized, Provisional]
          * @return The snapshot list of classification elements in the group. (NotNull)
          */
         public static List<MemberStatus> listOfServiceAvailable() {
-            return new ArrayList<MemberStatus>(Arrays.asList(正式会員, 仮会員));
+            return new ArrayList<MemberStatus>(Arrays.asList(Formalized, Provisional));
         }
 
         /**
          * Get the list of group classification elements. (returns new copied list) <br>
          * まだ正式会員に達してない会員 <br>
-         * The group elements:[仮会員]
+         * The group elements:[Provisional]
          * @return The snapshot list of classification elements in the group. (NotNull)
          */
         public static List<MemberStatus> listOfShortOfFormalized() {
-            return new ArrayList<MemberStatus>(Arrays.asList(仮会員));
+            return new ArrayList<MemberStatus>(Arrays.asList(Provisional));
         }
 
         /**
@@ -459,17 +459,17 @@ public interface CDef extends Classification {
      * 主に会員の住んでいる地域を示す
      */
     public enum Region implements CDef {
-        /** アメリカ */
-        アメリカ("1", "アメリカ", emptyStrings())
+        /** AMERICA */
+        America("1", "AMERICA", emptyStrings())
         ,
-        /** カナダ */
-        カナダ("2", "カナダ", emptyStrings())
+        /** CANADA */
+        Canada("2", "CANADA", emptyStrings())
         ,
-        /** 中国 */
-        中国("3", "中国", emptyStrings())
+        /** CHINA */
+        China("3", "CHINA", emptyStrings())
         ,
-        /** 千葉 */
-        千葉("4", "千葉", emptyStrings())
+        /** CHIBA */
+        Chiba("4", "CHIBA", emptyStrings())
         ;
         private static final Map<String, Region> _codeClsMap = new HashMap<String, Region>();
         private static final Map<String, Region> _nameClsMap = new HashMap<String, Region>();
@@ -587,16 +587,16 @@ public interface CDef extends Classification {
      * 会員の退会理由。なのでちょっとねがてぃぶ
      */
     public enum WithdrawalReason implements CDef {
-        /** SIT: サイトが使いにくいから */
+        /** SIT: site is not kindness */
         Sit("SIT", "SIT", emptyStrings())
         ,
-        /** PRD: 商品に魅力がないから */
+        /** PRD: no attractive product */
         Prd("PRD", "PRD", emptyStrings())
         ,
-        /** FRT: フリテンだから */
+        /** FRT: because of furiten */
         Frt("FRT", "FRT", emptyStrings())
         ,
-        /** OTH: その他理由 */
+        /** OTH: other reasons */
         Oth("OTH", "OTH", emptyStrings())
         ;
         private static final Map<String, WithdrawalReason> _codeClsMap = new HashMap<String, WithdrawalReason>();
@@ -715,20 +715,20 @@ public interface CDef extends Classification {
      * 商品のカテゴリ。階層構造である
      */
     public enum ProductCategory implements CDef {
-        /** 音楽 */
-        音楽("MSC", "音楽", emptyStrings())
+        /** Music */
+        Music("MSC", "Music", emptyStrings())
         ,
-        /** 食品 */
-        食品("FOD", "食品", emptyStrings())
+        /** Food */
+        Food("FOD", "Food", emptyStrings())
         ,
-        /** ハーブ: of 食品 */
-        ハーブ("HEB", "ハーブ", emptyStrings())
+        /** Herb: of Food */
+        Herb("HEB", "Herb", emptyStrings())
         ,
-        /** 音楽CD: of 音楽 */
-        音楽cd("MCD", "音楽CD", emptyStrings())
+        /** MusicCD: of Music */
+        MusicCD("MCD", "MusicCD", emptyStrings())
         ,
-        /** 楽器: of 音楽 */
-        楽器("INS", "楽器", emptyStrings())
+        /** Instruments: of Music */
+        Instruments("INS", "Instruments", emptyStrings())
         ;
         private static final Map<String, ProductCategory> _codeClsMap = new HashMap<String, ProductCategory>();
         private static final Map<String, ProductCategory> _nameClsMap = new HashMap<String, ProductCategory>();
@@ -846,14 +846,14 @@ public interface CDef extends Classification {
      * 商品ステータス。あんまり面白みのないステータス
      */
     public enum ProductStatus implements CDef {
-        /** 生産販売可能 */
-        生産販売可能("ONS", "生産販売可能", emptyStrings())
+        /** OnSaleProduction */
+        OnSaleProduction("ONS", "OnSaleProduction", emptyStrings())
         ,
-        /** 生産中止 */
-        生産中止("PST", "生産中止", emptyStrings())
+        /** ProductionStop */
+        ProductionStop("PST", "ProductionStop", emptyStrings())
         ,
-        /** 販売中止 */
-        販売中止("SST", "販売中止", emptyStrings())
+        /** SaleStop */
+        SaleStop("SST", "SaleStop", emptyStrings())
         ;
         private static final Map<String, ProductStatus> _codeClsMap = new HashMap<String, ProductStatus>();
         private static final Map<String, ProductStatus> _nameClsMap = new HashMap<String, ProductStatus>();

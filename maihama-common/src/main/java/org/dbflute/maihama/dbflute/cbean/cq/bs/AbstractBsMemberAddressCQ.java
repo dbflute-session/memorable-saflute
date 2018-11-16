@@ -573,35 +573,35 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Equal(=). As アメリカ (1). And NullIgnored, OnlyOnceRegistered. <br>
-     * アメリカ
+     * Equal(=). As America (1). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMERICA
      */
-    public void setRegionId_Equal_アメリカ() {
-        setRegionId_Equal_AsRegion(CDef.Region.アメリカ);
+    public void setRegionId_Equal_America() {
+        setRegionId_Equal_AsRegion(CDef.Region.America);
     }
 
     /**
-     * Equal(=). As カナダ (2). And NullIgnored, OnlyOnceRegistered. <br>
-     * カナダ
+     * Equal(=). As Canada (2). And NullIgnored, OnlyOnceRegistered. <br>
+     * CANADA
      */
-    public void setRegionId_Equal_カナダ() {
-        setRegionId_Equal_AsRegion(CDef.Region.カナダ);
+    public void setRegionId_Equal_Canada() {
+        setRegionId_Equal_AsRegion(CDef.Region.Canada);
     }
 
     /**
-     * Equal(=). As 中国 (3). And NullIgnored, OnlyOnceRegistered. <br>
-     * 中国
+     * Equal(=). As China (3). And NullIgnored, OnlyOnceRegistered. <br>
+     * CHINA
      */
-    public void setRegionId_Equal_中国() {
-        setRegionId_Equal_AsRegion(CDef.Region.中国);
+    public void setRegionId_Equal_China() {
+        setRegionId_Equal_AsRegion(CDef.Region.China);
     }
 
     /**
-     * Equal(=). As 千葉 (4). And NullIgnored, OnlyOnceRegistered. <br>
-     * 千葉
+     * Equal(=). As Chiba (4). And NullIgnored, OnlyOnceRegistered. <br>
+     * CHIBA
      */
-    public void setRegionId_Equal_千葉() {
-        setRegionId_Equal_AsRegion(CDef.Region.千葉);
+    public void setRegionId_Equal_Chiba() {
+        setRegionId_Equal_AsRegion(CDef.Region.Chiba);
     }
 
     protected void doSetRegionId_Equal(Integer regionId) {
@@ -628,35 +628,35 @@ public abstract class AbstractBsMemberAddressCQ extends AbstractConditionQuery {
     }
 
     /**
-     * NotEqual(&lt;&gt;). As アメリカ (1). And NullIgnored, OnlyOnceRegistered. <br>
-     * アメリカ
+     * NotEqual(&lt;&gt;). As America (1). And NullIgnored, OnlyOnceRegistered. <br>
+     * AMERICA
      */
-    public void setRegionId_NotEqual_アメリカ() {
-        setRegionId_NotEqual_AsRegion(CDef.Region.アメリカ);
+    public void setRegionId_NotEqual_America() {
+        setRegionId_NotEqual_AsRegion(CDef.Region.America);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As カナダ (2). And NullIgnored, OnlyOnceRegistered. <br>
-     * カナダ
+     * NotEqual(&lt;&gt;). As Canada (2). And NullIgnored, OnlyOnceRegistered. <br>
+     * CANADA
      */
-    public void setRegionId_NotEqual_カナダ() {
-        setRegionId_NotEqual_AsRegion(CDef.Region.カナダ);
+    public void setRegionId_NotEqual_Canada() {
+        setRegionId_NotEqual_AsRegion(CDef.Region.Canada);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As 中国 (3). And NullIgnored, OnlyOnceRegistered. <br>
-     * 中国
+     * NotEqual(&lt;&gt;). As China (3). And NullIgnored, OnlyOnceRegistered. <br>
+     * CHINA
      */
-    public void setRegionId_NotEqual_中国() {
-        setRegionId_NotEqual_AsRegion(CDef.Region.中国);
+    public void setRegionId_NotEqual_China() {
+        setRegionId_NotEqual_AsRegion(CDef.Region.China);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As 千葉 (4). And NullIgnored, OnlyOnceRegistered. <br>
-     * 千葉
+     * NotEqual(&lt;&gt;). As Chiba (4). And NullIgnored, OnlyOnceRegistered. <br>
+     * CHIBA
      */
-    public void setRegionId_NotEqual_千葉() {
-        setRegionId_NotEqual_AsRegion(CDef.Region.千葉);
+    public void setRegionId_NotEqual_Chiba() {
+        setRegionId_NotEqual_AsRegion(CDef.Region.Chiba);
     }
 
     protected void doSetRegionId_NotEqual(Integer regionId) {
