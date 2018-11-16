@@ -314,11 +314,12 @@ dl.procedurelist dd.column pre {
 	margin: 0 auto;
 	border: 1px solid #999999;
 	padding: 15px;
-	background-color: #ffffff;
+	background-color: #fff8f8;
 	border-radius: 4px;
 }
 .decommentmodalcontent p {
 	font-size: 14px;
+	color: #222277;
 }
 .decommentinput {
 	display: block;
@@ -326,10 +327,26 @@ dl.procedurelist dd.column pre {
 	margin-top: 10px;
 	font-size: 12px;
 }
+.decommentmodal-ok-area {
+	text-align: right;
+	margin: 0em 1em 0em 0em
+}
 .decommentmodal-ok-btn {
-	margin: 10px 5px 0 0;
-	padding: 5px 10px;
-	border-radius: 4px;
+	display: inline-block;
+	margin: 0.5em 0em;
+	padding: 0.5em 1.5em 0.5em 1.5em;
+	text-decoration: none;
+	border-radius: 3px;
+	font-weight: bold;
+	color: #FFF;
+	text-align: right;
+	background-image: -webkit-linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+	background-image: linear-gradient(45deg, #709dff 0%, #b0c9ff 100%);
+	transition: .4s;
+}
+.decommentmodal-ok-btn:hover{
+	background-image: -webkit-linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
+	background-image: linear-gradient(45deg, #709dff 50%, #b0c9ff 100%);
 }
 .decommentmodal-close-btn {
 	position: absolute;
@@ -351,9 +368,17 @@ dl.procedurelist dd.column pre {
 .decommentmodal-close-btn:hover {
 	background-color: #eed;
 }
-.decomment-user-name {
+.decomment-user-input {
 	display: none;
+}
+.decomment-user-name {
+	margin-top: 0.5em;
 	padding: 5px;
+	border: thin solid #aa3344;
+}
+.decomment-user-name-desc {
+	margin-left: 0.5em;
+	color: #222277;
 }
 	</style>
 </head>
@@ -3252,27 +3277,27 @@ dl.procedurelist dd.column pre {
 				<th id="MemberStatusCls">Code</th>
 				<th>Name</th>
 				<th>Comment</th>
-				<th><span class="clsgroup" title="サービスが利用できる会員 :: [正式会員, 仮会員]">serviceAvailable</span></th>
-				<th><span class="clsgroup" title="まだ正式会員に達してない会員 :: [仮会員]">shortOfFormalized</span></th>
+				<th><span class="clsgroup" title="サービスが利用できる会員 :: [Formalized, Provisional]">serviceAvailable</span></th>
+				<th><span class="clsgroup" title="まだ正式会員に達してない会員 :: [Provisional]">shortOfFormalized</span></th>
 			</tr>
 			<tr>
 				<td>FML</td>
-				<td>正式会員</td>
-				<td class="commentcell">正式な会員としてサイトサービスが利用可能</td>
+				<td>Formalized</td>
+				<td class="commentcell">as&nbsp;formal&nbsp;member,&nbsp;allowed&nbsp;to&nbsp;use&nbsp;all&nbsp;service</td>
 				<td class="flgcell">o</td>
 				<td class="flgcell"> &nbsp;</td>
 			</tr>
 			<tr>
 				<td>WDL</td>
-				<td>退会会員</td>
-				<td class="commentcell">退会が確定した会員でサイトサービスはダメ</td>
+				<td>Withdrawal</td>
+				<td class="commentcell">withdrawal&nbsp;is&nbsp;fixed,&nbsp;not&nbsp;allowed&nbsp;to&nbsp;use&nbsp;service</td>
 				<td class="flgcell"> &nbsp;</td>
 				<td class="flgcell"> &nbsp;</td>
 			</tr>
 			<tr>
 				<td>PRV</td>
-				<td>仮会員</td>
-				<td class="commentcell">入会直後のステータスで一部のサイトサービスが利用可能</td>
+				<td>Provisional</td>
+				<td class="commentcell">first&nbsp;status&nbsp;after&nbsp;entry,&nbsp;allowed&nbsp;to&nbsp;use&nbsp;only&nbsp;part&nbsp;of&nbsp;service</td>
 				<td class="flgcell">o</td>
 				<td class="flgcell">o</td>
 			</tr>
@@ -3331,22 +3356,22 @@ dl.procedurelist dd.column pre {
 			</tr>
 			<tr>
 				<td>1</td>
-				<td>アメリカ</td>
+				<td>America</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>2</td>
-				<td>カナダ</td>
+				<td>Canada</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>3</td>
-				<td>中国</td>
+				<td>China</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>4</td>
-				<td>千葉</td>
+				<td>Chiba</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			</table>
@@ -3366,22 +3391,22 @@ dl.procedurelist dd.column pre {
 			<tr>
 				<td>SIT</td>
 				<td>Sit</td>
-				<td class="commentcell">サイトが使いにくいから</td>
+				<td class="commentcell">site&nbsp;is&nbsp;not&nbsp;kindness</td>
 			</tr>
 			<tr>
 				<td>PRD</td>
 				<td>Prd</td>
-				<td class="commentcell">商品に魅力がないから</td>
+				<td class="commentcell">no&nbsp;attractive&nbsp;product</td>
 			</tr>
 			<tr>
 				<td>FRT</td>
 				<td>Frt</td>
-				<td class="commentcell">フリテンだから</td>
+				<td class="commentcell">because&nbsp;of&nbsp;furiten</td>
 			</tr>
 			<tr>
 				<td>OTH</td>
 				<td>Oth</td>
-				<td class="commentcell">その他理由</td>
+				<td class="commentcell">other&nbsp;reasons</td>
 			</tr>
 			</table>
 		</td>
@@ -3399,28 +3424,28 @@ dl.procedurelist dd.column pre {
 			</tr>
 			<tr>
 				<td>MSC</td>
-				<td>音楽</td>
+				<td>Music</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>FOD</td>
-				<td>食品</td>
+				<td>Food</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>HEB</td>
-				<td>ハーブ</td>
-				<td class="commentcell">of&nbsp;食品</td>
+				<td>Herb</td>
+				<td class="commentcell">of&nbsp;Food</td>
 			</tr>
 			<tr>
 				<td>MCD</td>
-				<td>音楽cd</td>
-				<td class="commentcell">of&nbsp;音楽</td>
+				<td>MusicCD</td>
+				<td class="commentcell">of&nbsp;Music</td>
 			</tr>
 			<tr>
 				<td>INS</td>
-				<td>楽器</td>
-				<td class="commentcell">of&nbsp;音楽</td>
+				<td>Instruments</td>
+				<td class="commentcell">of&nbsp;Music</td>
 			</tr>
 			</table>
 		</td>
@@ -3438,17 +3463,17 @@ dl.procedurelist dd.column pre {
 			</tr>
 			<tr>
 				<td>ONS</td>
-				<td>生産販売可能</td>
+				<td>OnSaleProduction</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>PST</td>
-				<td>生産中止</td>
+				<td>ProductionStop</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			<tr>
 				<td>SST</td>
-				<td>販売中止</td>
+				<td>SaleStop</td>
 				<td class="commentcell">&nbsp;</td>
 			</tr>
 			</table>
@@ -3470,8 +3495,8 @@ dl.procedurelist dd.column pre {
 		<div id="decomment-close" class="decommentmodal-close-btn"><span>x</span></div>
 		<p>Input the new column comment of <span id="decomment-modal-column-info"></span></p>
 		<textarea id="decomment-input" class="decommentinput" rows="5"></textarea>
-		<input type="text" id="decomment-user-name" class="decomment-user-name" placeholder="User name"/>
-		<button id="decomment-ok" class="decommentmodal-ok-btn">OK</button>
+		<div id="decomment-user-input" class="decomment-user-input"><input type="text" id="decomment-user-name" class="decomment-user-name" placeholder="User name"/><span class="decomment-user-name-desc">*required (saved in cookie)</span></div>
+		<div class="decommentmodal-ok-area"><button id="decomment-ok" class="decommentmodal-ok-btn">OK</button></div>
 	</div>
 </div>
 <script>
@@ -4917,12 +4942,12 @@ Decomment.prototype = {
 	 */
 	showUserNameInputIfNeed: function() {
 		if (DecommentUtil.isDecommentServer() && this.isUserNameEmpty()) {
-			document.querySelector('#decomment-user-name').style.display = 'block';
+			document.querySelector('#decomment-user-input').style.display = 'block';
 		}
 	},
 
 	hideUserNameInput: function() {
-		document.querySelector('#decomment-user-name').style.display = 'none';
+		document.querySelector('#decomment-user-input').style.display = 'none';
 	},
 
 	/**

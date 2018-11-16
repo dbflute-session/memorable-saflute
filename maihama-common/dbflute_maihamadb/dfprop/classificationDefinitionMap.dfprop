@@ -55,11 +55,11 @@ map:{
         	; groupingMap = map:{
                 ; serviceAvailable = map:{
                     ; groupComment = サービスが利用できる会員
-                    ; elementList = list:{正式会員;仮会員}
+                    ; elementList = list:{Formalized;Provisional}
                 }
                 ; shortOfFormalized = map:{
                     ; groupComment = まだ正式会員に達してない会員
-                    ; elementList = list:{仮会員}
+                    ; elementList = list:{Provisional}
                 }
         	}
         }

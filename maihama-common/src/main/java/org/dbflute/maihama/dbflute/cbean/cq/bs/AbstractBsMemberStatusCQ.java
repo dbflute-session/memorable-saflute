@@ -78,27 +78,27 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
 
     /**
-     * Equal(=). As 正式会員 (FML). And OnlyOnceRegistered. <br>
-     * 正式会員: 正式な会員としてサイトサービスが利用可能
+     * Equal(=). As Formalized (FML). And OnlyOnceRegistered. <br>
+     * Formalized: as formal member, allowed to use all service
      */
-    public void setMemberStatusCode_Equal_正式会員() {
-        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.正式会員);
+    public void setMemberStatusCode_Equal_Formalized() {
+        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.Formalized);
     }
 
     /**
-     * Equal(=). As 退会会員 (WDL). And OnlyOnceRegistered. <br>
-     * 退会会員: 退会が確定した会員でサイトサービスはダメ
+     * Equal(=). As Withdrawal (WDL). And OnlyOnceRegistered. <br>
+     * Withdrawal: withdrawal is fixed, not allowed to use service
      */
-    public void setMemberStatusCode_Equal_退会会員() {
-        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.退会会員);
+    public void setMemberStatusCode_Equal_Withdrawal() {
+        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.Withdrawal);
     }
 
     /**
-     * Equal(=). As 仮会員 (PRV). And OnlyOnceRegistered. <br>
-     * 仮会員: 入会直後のステータスで一部のサイトサービスが利用可能
+     * Equal(=). As Provisional (PRV). And OnlyOnceRegistered. <br>
+     * Provisional: first status after entry, allowed to use only part of service
      */
-    public void setMemberStatusCode_Equal_仮会員() {
-        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.仮会員);
+    public void setMemberStatusCode_Equal_Provisional() {
+        setMemberStatusCode_Equal_AsMemberStatus(CDef.MemberStatus.Provisional);
     }
 
     protected void doSetMemberStatusCode_Equal(String memberStatusCode) {
@@ -125,27 +125,27 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
     }
 
     /**
-     * NotEqual(&lt;&gt;). As 正式会員 (FML). And OnlyOnceRegistered. <br>
-     * 正式会員: 正式な会員としてサイトサービスが利用可能
+     * NotEqual(&lt;&gt;). As Formalized (FML). And OnlyOnceRegistered. <br>
+     * Formalized: as formal member, allowed to use all service
      */
-    public void setMemberStatusCode_NotEqual_正式会員() {
-        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.正式会員);
+    public void setMemberStatusCode_NotEqual_Formalized() {
+        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.Formalized);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As 退会会員 (WDL). And OnlyOnceRegistered. <br>
-     * 退会会員: 退会が確定した会員でサイトサービスはダメ
+     * NotEqual(&lt;&gt;). As Withdrawal (WDL). And OnlyOnceRegistered. <br>
+     * Withdrawal: withdrawal is fixed, not allowed to use service
      */
-    public void setMemberStatusCode_NotEqual_退会会員() {
-        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.退会会員);
+    public void setMemberStatusCode_NotEqual_Withdrawal() {
+        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.Withdrawal);
     }
 
     /**
-     * NotEqual(&lt;&gt;). As 仮会員 (PRV). And OnlyOnceRegistered. <br>
-     * 仮会員: 入会直後のステータスで一部のサイトサービスが利用可能
+     * NotEqual(&lt;&gt;). As Provisional (PRV). And OnlyOnceRegistered. <br>
+     * Provisional: first status after entry, allowed to use only part of service
      */
-    public void setMemberStatusCode_NotEqual_仮会員() {
-        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.仮会員);
+    public void setMemberStatusCode_NotEqual_Provisional() {
+        setMemberStatusCode_NotEqual_AsMemberStatus(CDef.MemberStatus.Provisional);
     }
 
     protected void doSetMemberStatusCode_NotEqual(String memberStatusCode) {
@@ -175,7 +175,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * InScope {in ('a', 'b')}. As MemberStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * 入会から退会までの会員のステータスを示す <br>
      * サービスが利用できる会員 <br>
-     * The group elements:[正式会員, 仮会員]
+     * The group elements:[Formalized, Provisional]
      */
     public void setMemberStatusCode_InScope_ServiceAvailable() {
         setMemberStatusCode_InScope_AsMemberStatus(CDef.MemberStatus.listOfServiceAvailable());
@@ -185,7 +185,7 @@ public abstract class AbstractBsMemberStatusCQ extends AbstractConditionQuery {
      * InScope {in ('a', 'b')}. As MemberStatus. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
      * 入会から退会までの会員のステータスを示す <br>
      * まだ正式会員に達してない会員 <br>
-     * The group elements:[仮会員]
+     * The group elements:[Provisional]
      */
     public void setMemberStatusCode_InScope_ShortOfFormalized() {
         setMemberStatusCode_InScope_AsMemberStatus(CDef.MemberStatus.listOfShortOfFormalized());

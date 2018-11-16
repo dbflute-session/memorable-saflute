@@ -108,7 +108,7 @@ public class MemberEditAction extends DocksideBaseAction {
         member.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(memberForm.memberStatusCode));
         member.setMemberAccount(memberForm.memberAccount);
         CDef.MemberStatus previousStatus = CDef.MemberStatus.codeOf(memberForm.previousStatusCode);
-        if (member.isMemberStatusCode正式会員()) {
+        if (member.isMemberStatusCodeFormalized()) {
             if (previousStatus != null && previousStatus.isShortOfFormalized()) {
                 member.setFormalizedDatetime(timeManager.getCurrentLocalDateTime());
             }
@@ -124,7 +124,7 @@ public class MemberEditAction extends DocksideBaseAction {
     public String doDelete() {
         Member member = new Member();
         member.setMemberId(memberForm.memberId);
-        member.setMemberStatusCode_退会会員();
+        member.setMemberStatusCode_Withdrawal();
         member.setVersionNo(memberForm.versionNo);
         memberBhv.update(member);
         return redirect(MemberListAction.class);

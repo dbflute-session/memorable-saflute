@@ -76,7 +76,7 @@ public class MemberAddAction extends DocksideBaseAction {
         member.setBirthdate(toLocalDate(memberForm.birthdate));
         member.setMemberStatusCodeAsMemberStatus(CDef.MemberStatus.codeOf(memberForm.memberStatusCode));
         member.setMemberAccount(memberForm.memberAccount);
-        if (member.isMemberStatusCode正式会員()) { // 区分値の判定は Entity の isなんとか() メソッドで by jflute
+        if (member.isMemberStatusCodeFormalized()) { // 区分値の判定は Entity の isなんとか() メソッドで by jflute
             member.setFormalizedDatetime(timeManager.getCurrentLocalDateTime()); // 現在日時はTimeManagerから by jflute
         }
         member.setVersionNo(memberForm.versionNo);
