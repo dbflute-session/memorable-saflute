@@ -131,6 +131,13 @@
 			<artifactId>geronimo-ejb_3.0_spec</artifactId>
 		</dependency>
 
+		<!-- java11 -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
 		<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 		<!--                                                               Partner Library -->
 		<!--                                                               = = = = = = = = -->
