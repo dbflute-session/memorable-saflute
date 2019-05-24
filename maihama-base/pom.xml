@@ -379,6 +379,12 @@
 				<version>${swagger.ui.version}</version>
 				<scope>runtime</scope>
 			</dependency>
+			<!-- http client for remote api -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.3</version>
+			</dependency>
 
 			<!-- = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = -->
 			<!--														   Various Utility -->
