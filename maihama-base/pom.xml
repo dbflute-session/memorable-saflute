@@ -42,13 +42,6 @@
 		<commons.collections.version>3.2.1</commons.collections.version>
 		<commons.io.version>2.0.1</commons.io.version>
 		<commons.codec.version>1.6</commons.codec.version>
-		<!--
-		 it needs secure version JVN#14876762 (safety since 1.3.1)
-		 however no guarantee of upgrading (for now)
-		 so you should use ActionMultipartRequestHandler at least,
-		 which has check of large boundary size
-		 you can specify at struts-config.xml.
-		 -->
 		<commons.fileupload.version>1.3.3</commons.fileupload.version>
 
 		<!-- Testing -->
