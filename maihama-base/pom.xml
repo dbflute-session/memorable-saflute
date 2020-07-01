@@ -21,7 +21,7 @@
 		<!-- Main Framework -->
 		<saflute.version>1.0.0-SNAPSHOT</saflute.version>
 		<dbflute.version>1.1.8</dbflute.version>
-		<mysql.jdbc.version>5.1.46</mysql.jdbc.version>
+		<mysql.jdbc.version>8.0.16</mysql.jdbc.version>
 		<seasar.version>2.4.46</seasar.version>
 		<javassist.version>3.20.0-GA</javassist.version> <!-- java8 needs newer version -->
 		<classbuilder.version>0.0.11</classbuilder.version>
