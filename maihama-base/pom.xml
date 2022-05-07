@@ -164,7 +164,7 @@
 
 	<repositories>
 		<repository>
-			<id>localrepo</id>
+			<id>local.repo</id>
 			<name>Local Repository</name>
 			<url>file:${basedir}/../maihama-base/repo</url>
 		</repository>
