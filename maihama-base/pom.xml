@@ -21,7 +21,7 @@
 		<!-- Main Framework -->
 		<saflute.version>1.0.0-SNAPSHOT</saflute.version>
 		<dbflute.version>1.1.8</dbflute.version>
-		<mysql.jdbc.version>5.1.46</mysql.jdbc.version>
+		<mysql.jdbc.version>8.0.16</mysql.jdbc.version>
 		<seasar.version>2.4.46</seasar.version>
 		<javassist.version>3.20.0-GA</javassist.version> <!-- java8 needs newer version -->
 		<classbuilder.version>0.0.11</classbuilder.version>
@@ -39,7 +39,7 @@
 
 		<!-- Various Utility -->
 		<commons.lang.version>2.5</commons.lang.version>
-		<commons.collections.version>3.2.1</commons.collections.version>
+		<commons.collections.version>3.2.2</commons.collections.version>
 		<commons.io.version>2.0.1</commons.io.version>
 		<commons.codec.version>1.6</commons.codec.version>
 		<commons.fileupload.version>1.3.3</commons.fileupload.version>
