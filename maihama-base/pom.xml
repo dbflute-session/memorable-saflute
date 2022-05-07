@@ -171,7 +171,7 @@
 		<repository>
 			<id>maven.seasar.org</id>
 			<name>The Seasar Foundation Maven2 Repository</name>
-			<url>http://maven.seasar.org/maven2</url>
+			<url>https://maven.seasar.org/maven2</url>
 		</repository>
 		<repository>
 			<snapshots>
@@ -179,7 +179,7 @@
 			</snapshots>
 			<id>snapshot.maven.seasar.org</id>
 			<name>The Seasar Foundation Maven2 Snapshot Repository</name>
-			<url>http://maven.seasar.org/maven2-snapshot</url>
+			<url>https://maven.seasar.org/maven2-snapshot</url>
 		</repository>
 		<repository>
 			<id>amateras</id>
