@@ -234,6 +234,7 @@ public class GsonJsonEngine implements RealJsonEngine // adapters here
         final ConstructorConstructor constructorConstructor = getConstructorConstructor(factory);
         final JsonAdapterAnnotationTypeAdapterFactory jsonAdapterFactory = getJsonAdapterFactory(factory);
         final FieldNamingStrategy fieldNamingStrategy = newGson.fieldNamingStrategy();
+        @SuppressWarnings("deprecation") // for Gson-2.8.9
         final Excluder excluder = newGson.excluder();
         return new LaReflectiveTypeAdapterFactory(constructorConstructor, fieldNamingStrategy, excluder, jsonAdapterFactory);
     }
