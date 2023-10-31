@@ -71,6 +71,22 @@ public class MemberListAction extends DocksideBaseAction {
     //                                                                             =======
     @Execute(validator = false, urlPattern = "{pageNumber}")
     public String index() {
+        // #needs_fix jflute the following exception in JSP (in all actions) (2023/10/31)
+        /*
+        2023-10-31 22:36:45,439 [http-nio-8088-exec-2]-DEBUG (GodHandableActionWrapper#execute():162) - #flow ...Forwarding to #jsp /WEB-INF/view/member/member_list.jsp
+        10 31, 2023 10:36:45 午後 org.apache.catalina.core.ApplicationDispatcher invoke
+        重大: Servlet.service() for servlet [jsp] threw exception
+        org.apache.jasper.JasperException: /WEB-INF/view/member/member_list.jsp (line: [1], column: [1]) null
+        at org.apache.jasper.compiler.DefaultErrorHandler.jspError(DefaultErrorHandler.java:41)
+        at org.apache.jasper.compiler.ErrorDispatcher.dispatch(ErrorDispatcher.java:291)
+        at org.apache.jasper.compiler.ErrorDispatcher.jspError(ErrorDispatcher.java:97)
+        at org.apache.jasper.compiler.Parser.processIncludeDirective(Parser.java:348)
+        at org.apache.jasper.compiler.Parser.addInclude(Parser.java:399)
+        at org.apache.jasper.compiler.Parser.parse(Parser.java:139)
+        at org.apache.jasper.compiler.ParserController.doParse(ParserController.java:244)
+        at org.apache.jasper.compiler.ParserController.parse(ParserController.java:105)
+        at org.apache.jasper.compiler.Compiler.generateJava(Compiler.java:203)
+         */
         doPaging();
         return path_Member_MemberListJsp;
     }
