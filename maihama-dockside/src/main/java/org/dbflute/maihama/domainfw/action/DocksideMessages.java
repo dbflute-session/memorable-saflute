@@ -18,7 +18,7 @@ public class DocksideMessages extends MaihamaMessages {
     /**
      * Add the created action message for the key 'errors.empty.login' with parameters.
      * <pre>
-     * message: メールアドレスまたはパスワードをないがしろにしています
+     * message: メールアドレスとか、まあそういうのないとこまる
      * comment: @Override ----------------
      * </pre>
      * @param property The property name for the message. (NotNull)
@@ -32,7 +32,7 @@ public class DocksideMessages extends MaihamaMessages {
     /**
      * Add the created action message for the key 'errors.not.login' with parameters.
      * <pre>
-     * message: メールアドレスとパスワードが地球外のものです
+     * message: メールとパスワード、どっちかやばい
      * comment: @Override
      * </pre>
      * @param property The property name for the message. (NotNull)
@@ -62,7 +62,7 @@ public class DocksideMessages extends MaihamaMessages {
      */
     public static interface LabelKey extends MaihamaMessages.LabelKey {
 
-        /** The key of the label: 郵便番号 */
+        /** The key of the label: ゆーびんばんごー */
         String LABELS_ZIP_CODE = "labels.zipCode";
     }
 }
