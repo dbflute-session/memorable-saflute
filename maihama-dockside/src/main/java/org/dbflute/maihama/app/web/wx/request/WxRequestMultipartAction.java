@@ -46,12 +46,12 @@ public class WxRequestMultipartAction extends DocksideBaseAction {
     // http://localhost:8088/dockside/wx/request/multipart
     @Execute(validator = false)
     public String index() {
-        return path_WxRequestMultipart_WxRequestMultipartJsp;
+        return path_WxRequest_WxRequestMultipartJsp;
     }
 
-    @Execute(validator = false)
+    @Execute(validator = true, input = path_WxRequest_WxRequestMultipartJsp)
     public String doUpload() {
         LOG.debug("requestMultipartForm: " + wxRequestMultipartForm);
-        return path_WxRequestMultipart_WxRequestMultipartJsp;
+        return path_WxRequest_WxRequestMultipartJsp;
     }
 }

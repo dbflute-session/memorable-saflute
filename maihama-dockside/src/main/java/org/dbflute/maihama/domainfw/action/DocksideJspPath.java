@@ -24,6 +24,6 @@ public interface DocksideJspPath {
     /** The path of the JSP: /member/purchase/member_purchase_list.jsp */
     String path_MemberPurchase_MemberPurchaseListJsp = "/member/purchase/member_purchase_list.jsp";
 
-    /** The path of the JSP: /wx/request/multipart/wx_request_multipart.jsp */
-    String path_WxRequestMultipart_WxRequestMultipartJsp = "/wx/request/multipart/wx_request_multipart.jsp";
+    /** The path of the JSP: /wx/request/wx_request_multipart.jsp */
+    String path_WxRequest_WxRequestMultipartJsp = "/wx/request/wx_request_multipart.jsp";
 }
