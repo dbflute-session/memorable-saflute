@@ -47,7 +47,7 @@
 		<!-- Testing -->
 		<junit.version>4.8.2</junit.version>
 		<utflute.version>0.8.8</utflute.version>
-		<tomcat.boot.version>0.6.2</tomcat.boot.version>
+		<tomcat.boot.version>0.3.2</tomcat.boot.version>
 	</properties>
 
 	<licenses>
