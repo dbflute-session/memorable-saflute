@@ -38,7 +38,7 @@ public class WxRequestMultipartAction extends DocksideBaseAction {
     //                                                                           =========
     @ActionForm
     @Resource
-    protected WxRequestMultipartForm requestMultipartForm;
+    protected WxRequestMultipartForm wxRequestMultipartForm; // DI depends on variable name 
 
     // ===================================================================================
     //                                                                             Execute
@@ -46,15 +46,12 @@ public class WxRequestMultipartAction extends DocksideBaseAction {
     // http://localhost:8088/dockside/wx/request/multipart
     @Execute(validator = false)
     public String index() {
-        // #thinking jflute making now, needs to resolve the following unexpected exception (2023/10/31)
-        // Caused by: org.seasar.framework.container.IllegalAutoBindingPropertyRuntimeException:
-        // [ESSR0080]クラス(org.dbflute.maihama.app.web.wx.request.WxRequestMultipartAction$$EnhancedByS2AOP$$6c8e03d8)のプロパティ(requestMultipartForm)の自動設定に失敗しました
         return path_WxRequestMultipart_WxRequestMultipartJsp;
     }
 
     @Execute(validator = false)
     public String doUpload() {
-        LOG.debug("requestMultipartForm: " + requestMultipartForm);
+        LOG.debug("requestMultipartForm: " + wxRequestMultipartForm);
         return path_WxRequestMultipart_WxRequestMultipartJsp;
     }
 }
