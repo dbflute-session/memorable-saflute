@@ -27,14 +27,18 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 
 import org.dbflute.Entity;
+import org.dbflute.bhv.core.BehaviorCommandHook;
+import org.dbflute.bhv.core.BehaviorCommandMeta;
 import org.dbflute.cbean.result.PagingResultBean;
 import org.dbflute.helper.HandyDate;
 import org.dbflute.hook.AccessContext;
+import org.dbflute.hook.CallbackContext;
 import org.dbflute.maihama.projectfw.core.direction.MaihamaConfig;
 import org.dbflute.maihama.projectfw.web.action.MaihamaMessages;
 import org.dbflute.maihama.projectfw.web.paging.PagingNavi;
 import org.dbflute.saflute.db.dbflute.accesscontext.AccessContextArranger;
 import org.dbflute.saflute.db.dbflute.accesscontext.AccessContextResource;
+import org.dbflute.saflute.db.jta.lazy.LazyHookedUserTransaction;
 import org.dbflute.saflute.web.action.TypicalBaseAction;
 import org.dbflute.saflute.web.action.callback.ActionExecuteMeta;
 import org.dbflute.saflute.web.action.exception.ForcedRequest404NotFoundException;
@@ -105,6 +109,65 @@ public abstract class MaihamaBaseAction extends TypicalBaseAction {
     @Override
     public final void godHandActionEpilogue(ActionExecuteMeta executeMeta) {
         super.godHandActionEpilogue(executeMeta);
+    }
+
+    // -----------------------------------------------------
+    //                                   Application GodHand
+    //                                   -------------------
+    @Override
+    public String godHandBefore(ActionExecuteMeta executeMeta) {
+        final String superResult = super.godHandBefore(executeMeta);
+
+        arrangeLazyTransactionHook();
+        return superResult;
+    }
+
+    @Override
+    public void godHandFinally(ActionExecuteMeta executeMeta) {
+        clearBehaviorCommandHook();
+        closeLazyTransaction();
+        super.godHandFinally(executeMeta);
+    }
+
+    // -----------------------------------------------------
+    //                                       LazyTransaction
+    //                                       ---------------
+    protected void arrangeLazyTransactionHook() {
+        LazyHookedUserTransaction.readyLazyTransaction();
+        CallbackContext.setBehaviorCommandHookOnThread(createLazyTransactionHook());
+    }
+
+    protected BehaviorCommandHook createLazyTransactionHook() {
+        return new BehaviorCommandHook() {
+            public void hookBefore(BehaviorCommandMeta meta) {
+                if (canTransactionLazily(meta)) {
+                    LazyHookedUserTransaction.beginRealTransactionLazily();
+                }
+            }
+
+            public void hookFinally(BehaviorCommandMeta meta, RuntimeException cause) {
+            }
+
+            @Override
+            public boolean inheritsExistingHook() {
+                return true;
+            }
+        };
+    }
+
+    protected boolean canTransactionLazily(BehaviorCommandMeta meta) {
+        return !meta.isSelect() || meta.isProcedure();
+    }
+
+    protected void closeLazyTransaction() {
+        LazyHookedUserTransaction.closeLazyTransaction();
+    }
+
+    // -----------------------------------------------------
+    //                                   BehaviorCommandHook
+    //                                   -------------------
+    protected void clearBehaviorCommandHook() {
+        CallbackContext.clearBehaviorCommandHookOnThread();
     }
 
     // ===================================================================================

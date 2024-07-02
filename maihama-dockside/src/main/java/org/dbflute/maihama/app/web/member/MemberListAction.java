@@ -21,9 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import org.dbflute.cbean.result.ListResultBean;
 import org.dbflute.cbean.result.PagingResultBean;
+import org.dbflute.hook.AccessContext;
 import org.dbflute.maihama.app.web.base.DocksideBaseAction;
 import org.dbflute.maihama.dbflute.allcommon.CDef;
 import org.dbflute.maihama.dbflute.exbhv.MemberBhv;
@@ -32,6 +35,7 @@ import org.dbflute.maihama.dbflute.exentity.Member;
 import org.dbflute.maihama.dbflute.exentity.MemberStatus;
 import org.dbflute.maihama.domainfw.action.DocksideLoginRequired;
 import org.dbflute.maihama.projectfw.web.paging.PagingNavi;
+import org.dbflute.saflute.db.dbflute.accesscontext.PreparedAccessContext;
 import org.dbflute.saflute.web.action.callback.ActionExecuteMeta;
 import org.seasar.struts.annotation.ActionForm;
 import org.seasar.struts.annotation.Execute;
@@ -59,6 +63,9 @@ public class MemberListAction extends DocksideBaseAction {
     @Resource
     protected MemberStatusBhv memberStatusBhv;
 
+    @Resource
+    private UserTransaction userTransaction;
+
     // -----------------------------------------------------
     //                                          Display Data
     //                                          ------------
@@ -71,6 +78,8 @@ public class MemberListAction extends DocksideBaseAction {
     //                                                                             =======
     @Execute(validator = false, urlPattern = "{pageNumber}")
     public String index() {
+        verifyAccessContextLifecycle();
+
         // #needs_fix jflute the following exception in JSP (in all actions) (2023/10/31)
         /*
         2023-10-31 22:36:45,439 [http-nio-8088-exec-2]-DEBUG (GodHandableActionWrapper#execute():162) - #flow ...Forwarding to #jsp /WEB-INF/view/member/member_list.jsp
@@ -89,6 +98,36 @@ public class MemberListAction extends DocksideBaseAction {
          */
         doPaging();
         return path_Member_MemberListJsp;
+    }
+
+    private void verifyAccessContextLifecycle() {
+        // _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+        // AccessContext lifecycle in LazyTransaction (2024/07/02)
+        // _/_/_/_/_/_/_/_/_/_/
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
+        try {
+            // 0: STATUS_ACTIVE
+            // 6: STATUS_NO_TRANSACTION
+            // should be 6 (STATUS_NO_TRANSACTION) if lazyTx
+            System.out.println("@@@: " + userTransaction.getStatus());
+        } catch (SystemException e) {
+            System.out.println("@@@: error => " + e.getClass().getName() + " :: " + e.getMessage());
+        }
+
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println("@@@: onThread=" + AccessContext.getAccessLocalDateTimeOnThread());
+        AccessContext context = AccessContext.getAccessContextOnThread();
+        if (context != null) {
+            System.out.println("@@@: context.datetime=" + context.getAccessLocalDateTime());
+            System.out.println("@@@: context.provider=" + context.getAccessLocalDateTimeProvider());
+        }
+
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@");
+        AccessContext prepared = PreparedAccessContext.getAccessContextOnThread();
+        if (prepared != null) {
+            System.out.println("@@@: prepared.datetime=" + prepared.getAccessLocalDateTime());
+            System.out.println("@@@: prepared.provider=" + prepared.getAccessLocalDateTimeProvider());
+        }
     }
 
     @Execute(validator = true, input = path_Member_MemberListJsp)
